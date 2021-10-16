@@ -104,3 +104,25 @@ CREATE TABLE news
     text  TEXT         NOT NULL,
     date  DATE         NOT NULL
 );
+
+INSERT INTO car_make(name)
+VALUES ('BMW'),
+       ('Lada'),
+       ('Audi'),
+       ('Honda'),
+       ('Audi'),
+       ('Ford'),
+       ('Volvo'),
+       ('Mazda'),
+       ('Kia'),
+       ('Mitsubishi'),
+       ('Volkswagen');
+
+INSERT INTO car_model(name, make_id)
+VALUES ('M5 седан', 1),
+       ('4 SERIES',1),
+       ('X1',1),
+       ('X2',1),
+       ('X5',1),
+       ('Vesta седан',2),
+       ('Priora',2);
