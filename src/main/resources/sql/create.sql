@@ -1,20 +1,20 @@
 CREATE TABLE car_make
 (
-    id   SERIAL PRIMARY KEY,
+    id   BIGSERIAL PRIMARY KEY,
     name varchar(45) NOT NULL
 );
 
 CREATE TABLE car_model
 (
-    id      SERIAL PRIMARY KEY,
+    id      BIGSERIAL PRIMARY KEY,
     name    VARCHAR(45) NOT NULL,
     make_id INT         NOT NULL,
-    FOREIGN KEY (make_id) REFERENCES car_make (id)
+    CONSTRAINT fk_car_make_car_model FOREIGN KEY (make_id) REFERENCES car_make (id)
 );
 
 CREATE TABLE car
 (
-    id              SERIAL PRIMARY KEY,
+    id              BIGSERIAL PRIMARY KEY,
     model_id        INT         NOT NULL,
     plate_number    VARCHAR(10) NOT NULL,
     price_per_day   INT         NOT NULL,
@@ -27,18 +27,18 @@ CREATE TABLE car
     engine_capacity FLOAT,
     engine_type     VARCHAR(45),
     consumption     FLOAT,
-    FOREIGN KEY (model_id) REFERENCES car_model (id)
+    CONSTRAINT fk_car_model_car FOREIGN KEY (model_id) REFERENCES car_model (id)
 );
 
 CREATE TABLE role
 (
-    id   SERIAL PRIMARY KEY,
+    id   BIGSERIAL PRIMARY KEY,
     name VARCHAR(45) NOT NULL
 );
 
 CREATE TABLE client
 (
-    id              SERIAL PRIMARY KEY,
+    id              BIGSERIAL PRIMARY KEY,
     username        VARCHAR(45) NOT NULL,
     password        VARCHAR(45) NOT NULL,
     first_name      VARCHAR(45) NOT NULL,
@@ -48,34 +48,34 @@ CREATE TABLE client
     phone           VARCHAR(45) NOT NULL,
     experience      INT         NOT NULL,
     role_id         INT         NOT NULL,
-    FOREIGN KEY (role_id) REFERENCES role (id)
+    CONSTRAINT fk_role_client FOREIGN KEY (role_id) REFERENCES role (id)
 );
 
 CREATE TABLE contract
 (
-    id         SERIAL PRIMARY KEY,
+    id         BIGSERIAL PRIMARY KEY,
     client_id  INT  NOT NULL,
     car_id     INT  NOT NULL,
     start_date DATE NOT NULL,
     end_date   DATE NOT NULL,
-    FOREIGN KEY (client_id) REFERENCES client (id),
-    FOREIGN KEY (car_id) REFERENCES car (id)
+    CONSTRAINT fk_client_contract FOREIGN KEY (client_id) REFERENCES client (id),
+    CONSTRAINT fk_car_contract FOREIGN KEY (car_id) REFERENCES car (id)
 );
 
 CREATE TABLE manager
 (
-    id       SERIAL PRIMARY KEY,
+    id       BIGSERIAL PRIMARY KEY,
     username VARCHAR(255) NOT NULL,
     password VARCHAR(60)  NOT NULL,
     role_id  INT          NOT NULL,
-    FOREIGN KEY (role_id) REFERENCES role (id)
+    CONSTRAINT fk_role_manager FOREIGN KEY (role_id) REFERENCES role (id)
 );
 
 CREATE TABLE car_photo
 (
-    car_id SERIAL PRIMARY KEY,
+    car_id BIGSERIAL,
     path   VARCHAR(255) PRIMARY KEY,
-    FOREIGN KEY (car_id) REFERENCES car (id)
+    CONSTRAINT fk_car_car_photo FOREIGN KEY (car_id) REFERENCES car (id)
 );
 
 CREATE TABLE address
@@ -85,27 +85,22 @@ CREATE TABLE address
     building  VARCHAR(10) NOT NULL,
     apartment INT         NOT NULL,
     client_id INT         NOT NULL PRIMARY KEY,
-    FOREIGN KEY (client_id) REFERENCES client (id)
+    CONSTRAINT fk_client_address FOREIGN KEY (client_id) REFERENCES client (id)
 );
 
 CREATE TABLE accident
 (
-    id          SERIAL PRIMARY KEY ,
+    id          BIGSERIAL PRIMARY KEY,
     damage      INT  NOT NULL,
     date        DATE NOT NULL,
     contract_id INT  NOT NULL,
-    FOREIGN KEY (contract_id) REFERENCES contract(id)
+    CONSTRAINT fk_contract_accident FOREIGN KEY (contract_id) REFERENCES contract (id)
 );
 
 CREATE TABLE news
 (
-    id    SERIAL PRIMARY KEY ,
+    id    BIGSERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     text  TEXT         NOT NULL,
     date  DATE         NOT NULL
 );
-
-
-
-
-
