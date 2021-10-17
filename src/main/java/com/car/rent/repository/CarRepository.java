@@ -1,9 +1,9 @@
 package com.car.rent.repository;
 
-import com.car.rent.model.CarMake;
+import com.car.rent.model.Car;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CarMakeRepository extends JpaRepository<CarMake, Long> {
+public interface CarRepository extends JpaRepository<Car, Long> {
 }

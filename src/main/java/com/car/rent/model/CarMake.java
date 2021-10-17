@@ -12,8 +12,8 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "car_model", schema = "public")
-public class CarModel {
+@Table(name = "car_make", schema = "public")
+public class CarMake {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Access(AccessType.PROPERTY)
@@ -21,7 +21,4 @@ public class CarModel {
 
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "make_id")
-    private CarMake makeId;
 }
