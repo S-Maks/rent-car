@@ -73,18 +73,20 @@ CREATE TABLE manager
 
 CREATE TABLE car_photo
 (
+    id     BIGSERIAL PRIMARY KEY,
     car_id BIGSERIAL,
-    path   VARCHAR(255) PRIMARY KEY,
+    path   VARCHAR(255),
     CONSTRAINT fk_car_car_photo FOREIGN KEY (car_id) REFERENCES car (id)
 );
 
 CREATE TABLE address
 (
+    id        BIGSERIAL PRIMARY KEY,
     city      VARCHAR(45) NOT NULL,
     street    VARCHAR(45) NOT NULL,
     building  VARCHAR(10) NOT NULL,
     apartment INT         NOT NULL,
-    client_id INT         NOT NULL PRIMARY KEY,
+    client_id INT         NOT NULL,
     CONSTRAINT fk_client_address FOREIGN KEY (client_id) REFERENCES client (id)
 );
 

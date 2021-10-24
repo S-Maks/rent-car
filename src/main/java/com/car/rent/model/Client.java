@@ -29,7 +29,7 @@ public class Client {
 
     private String document;
 
-    private String DocumentNumber;
+    private String documentNumber;
 
     private String phone;
 

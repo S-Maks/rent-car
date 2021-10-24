@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.sql.DataSource;
 
@@ -19,6 +20,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -26,19 +30,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/home","/","/forgotPassword", "/signIn", "/signUp", "/css/**", "/fonts/**", "/img/**", "/scripts/**")
+                .antMatchers("/user/registration","/home", "/", "/forgotPassword", "/signIn", "/signUp", "/css/**", "/fonts/**", "/img/**", "/scripts/**")
                 .permitAll()
-                .antMatchers("/admin/**").access("hasRole('ADMIN')")
-                .antMatchers("/act/**").access("hasRole('ADMIN')")
-                .antMatchers("/buyer/**").access("hasRole('ADMIN') or hasRole('BUYER')")
-                .antMatchers("/seller/**").access("hasRole('ADMIN') or hasRole('SELLER')")
-                .antMatchers("/product/**").access("hasRole('BUYER') or hasRole('ADMIN')")
-                .antMatchers("/home").access( "hasRole('SELLER') or hasRole('ADMIN') or hasRole('BUYER')or hasRole('BLOCKED')")
+//                .antMatchers("/admin/**").access("hasRole('ADMIN')")
+//                .antMatchers("/act/**").access("hasRole('ADMIN')")
+//                .antMatchers("/buyer/**").access("hasRole('ADMIN') or hasRole('BUYER')")
+//                .antMatchers("/seller/**").access("hasRole('ADMIN') or hasRole('SELLER')")
+//                .antMatchers("/product/**").access("hasRole('BUYER') or hasRole('ADMIN')")
+//                .antMatchers("/templates/home").access("hasRole('SELLER') or hasRole('ADMIN') or hasRole('BUYER')or hasRole('BLOCKED')")
                 .anyRequest()
                 .authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/home")
+                .loginPage("/templates/home")
                 .permitAll()
                 .and()
                 .logout()
@@ -46,10 +50,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
-                .passwordEncoder(NoOpPasswordEncoder.getInstance())
+                .passwordEncoder(passwordEncoder)
                 .usersByUsernameQuery("select username, password, true from account where username=?")
                 .authoritiesByUsernameQuery("select username, role from account where username=?");
     }
