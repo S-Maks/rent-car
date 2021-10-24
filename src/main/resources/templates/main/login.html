@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body class="limiter">
+<div>
+    <div class="container">
+        <div class="navbar">
+            <a class="a-link-margin p-l-200" th:href="@{/} "><img th:src="@{/img/home.png}" class="account-bin">
+            </a>
+        </div>
+    </div>
+    <div class="container-login100">
+        <div class="wrap-login100 p-t-60 p-b-30 p-l-60">
+            <div th:if="${param.error}" class="incorrect">
+                Неправильное Имя пользователя или Пароль
+            </div>
+
+            <div th:if="${param.logout}" class="incorrect">
+                Вы вышли из системы
+            </div>
+
+            <form class="login100-form validate-form" th:action="@{/login}" method="post">
+                <div class="wrap-input100 validate-input m-b-10" data-validate="Username is required">
+                    <input class="input100" type="text" placeholder="Имя пользователя" id="username" name="username">
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+                    <input class="input100" type="password" placeholder="Пароль" id="password" name="password">
+                </div>
+
+                <div class="container-login100-form-btn p-t-10">
+                    <button class="login100-form-btn">
+                        Войти
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

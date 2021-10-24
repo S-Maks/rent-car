@@ -7,7 +7,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.sql.DataSource;
@@ -30,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/user/registration","/home", "/", "/forgotPassword", "/signIn", "/signUp", "/css/**", "/fonts/**", "/img/**", "/scripts/**")
+                .antMatchers("/user/registration", "/home", "/", "/forgotPassword", "/login", "/css/**", "/fonts/**", "/img/**", "/scripts/**")
                 .permitAll()
 //                .antMatchers("/admin/**").access("hasRole('ADMIN')")
 //                .antMatchers("/act/**").access("hasRole('ADMIN')")
@@ -42,7 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/templates/home")
+                .loginPage("/login")
                 .permitAll()
                 .and()
                 .logout()
@@ -54,7 +53,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .passwordEncoder(passwordEncoder)
-                .usersByUsernameQuery("select username, password, true from account where username=?")
-                .authoritiesByUsernameQuery("select username, role from account where username=?");
+                .usersByUsernameQuery("select username, password, true from client where username = ?")
+                .authoritiesByUsernameQuery("select username, password, role_id from client where username = ?");
+        auth.jdbcAuthentication()
+                .dataSource(dataSource)
+                .passwordEncoder(passwordEncoder)
+                .usersByUsernameQuery("select username, password, true from manager where username = ?")
+                .authoritiesByUsernameQuery("select username, password, role_id from manager where username = ?");
     }
 }
