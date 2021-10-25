@@ -134,9 +134,9 @@ INSERT INTO car(model_id, plate_number, price_per_day, transmission, air_conditi
 VALUES (1, '0816BH-7', 100, 'автомат', true, 'Подогрев сидений', 4, 2019, 'Спортивный седан', 2.4, 'Бензин', 12);
 
 INSERT INTO role(name)
-VALUES ('ADMIN'),
-       ('MANAGER'),
-       ('CLIENT');
+VALUES ('ROLE_ADMIN'),
+       ('ROLE_MANAGER'),
+       ('ROLE_CLIENT');
 
 INSERT INTO client(username, password, first_name, last_name, document, document_number, phone, experience, role_id)
 VALUES ('client', '$2a$10$TmkPCXasKMmpD4Qb/px5A.SxpshdOmxvgimD5dLsswogjpYJz0xn2', 'client', 'client', 'prava',
