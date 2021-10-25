@@ -39,15 +39,15 @@ CREATE TABLE role
 CREATE TABLE client
 (
     id              BIGSERIAL PRIMARY KEY,
-    username        VARCHAR(45) NOT NULL,
+    username        VARCHAR(45)  NOT NULL,
     password        VARCHAR(255) NOT NULL,
-    first_name      VARCHAR(45) NOT NULL,
-    last_name       VARCHAR(45) NOT NULL,
-    document        VARCHAR(45) NOT NULL,
-    document_number VARCHAR(45) NOT NULL,
-    phone           VARCHAR(45) NOT NULL,
-    experience      INT         NOT NULL,
-    role_id         INT         NOT NULL,
+    first_name      VARCHAR(45)  NOT NULL,
+    last_name       VARCHAR(45)  NOT NULL,
+    document        VARCHAR(45)  NOT NULL,
+    document_number VARCHAR(45)  NOT NULL,
+    phone           VARCHAR(45)  NOT NULL,
+    experience      INT          NOT NULL,
+    role_id         INT          NOT NULL,
     CONSTRAINT fk_role_client FOREIGN KEY (role_id) REFERENCES role (id)
 );
 
@@ -134,14 +134,12 @@ INSERT INTO car(model_id, plate_number, price_per_day, transmission, air_conditi
 VALUES (1, '0816BH-7', 100, 'автомат', true, 'Подогрев сидений', 4, 2019, 'Спортивный седан', 2.4, 'Бензин', 12);
 
 INSERT INTO role(name)
-VALUES ('ROLE_ADMIN'),
-       ('ROLE_MANAGER'),
+VALUES ('ROLE_MANAGER'),
        ('ROLE_CLIENT');
 
 INSERT INTO client(username, password, first_name, last_name, document, document_number, phone, experience, role_id)
 VALUES ('client', '$2a$10$TmkPCXasKMmpD4Qb/px5A.SxpshdOmxvgimD5dLsswogjpYJz0xn2', 'client', 'client', 'prava',
-        '15.09.2020', '+375334589615', 2, 3);
+        '15.09.2020', '+375334589615', 2, 2);
 
 INSERT INTO manager(username, password, role_id)
-VALUES ('manager', '$2a$10$uRPtRqlDgfIp9ssMUrgo0es2Bz2EB98qvkYxoRLfow.zgEM28x24O', 2),
-       ('admin', '$2a$10$qSZ.f9uALligoiZ9/4S17OhhBoEStarjdc6GSscwG9dyYMMyPmgaK', 1);
+VALUES ('manager', '$2a$10$uRPtRqlDgfIp9ssMUrgo0es2Bz2EB98qvkYxoRLfow.zgEM28x24O', 1);

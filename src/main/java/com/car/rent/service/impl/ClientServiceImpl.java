@@ -27,7 +27,7 @@ public class ClientServiceImpl implements ClientService {
                 .documentNumber(client.getDocumentNumber())
                 .phone(client.getPhone())
                 .experience(client.getExperience())
-                .roleId(roleRepository.findByName("CLIENT").get())
+                .roleId(roleRepository.findByName("ROLE_CLIENT").get())
                 .build();
         clientRepository.save(clientModel);
     }
