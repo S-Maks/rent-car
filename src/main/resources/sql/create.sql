@@ -40,7 +40,7 @@ CREATE TABLE client
 (
     id              BIGSERIAL PRIMARY KEY,
     username        VARCHAR(45) NOT NULL,
-    password        VARCHAR(45) NOT NULL,
+    password        VARCHAR(255) NOT NULL,
     first_name      VARCHAR(45) NOT NULL,
     last_name       VARCHAR(45) NOT NULL,
     document        VARCHAR(45) NOT NULL,
@@ -66,7 +66,7 @@ CREATE TABLE manager
 (
     id       BIGSERIAL PRIMARY KEY,
     username VARCHAR(255) NOT NULL,
-    password VARCHAR(60)  NOT NULL,
+    password VARCHAR(255) NOT NULL,
     role_id  INT          NOT NULL,
     CONSTRAINT fk_role_manager FOREIGN KEY (role_id) REFERENCES role (id)
 );
@@ -137,3 +137,11 @@ INSERT INTO role(name)
 VALUES ('ADMIN'),
        ('MANAGER'),
        ('CLIENT');
+
+INSERT INTO client(username, password, first_name, last_name, document, document_number, phone, experience, role_id)
+VALUES ('client', '$2a$10$TmkPCXasKMmpD4Qb/px5A.SxpshdOmxvgimD5dLsswogjpYJz0xn2', 'client', 'client', 'prava',
+        '15.09.2020', '+375334589615', 2, 3);
+
+INSERT INTO manager(username, password, role_id)
+VALUES ('manager', '$2a$10$uRPtRqlDgfIp9ssMUrgo0es2Bz2EB98qvkYxoRLfow.zgEM28x24O', 2),
+       ('admin', '$2a$10$qSZ.f9uALligoiZ9/4S17OhhBoEStarjdc6GSscwG9dyYMMyPmgaK', 1);

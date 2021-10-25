@@ -29,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/registration", "/", "/forgotPassword", "/login", "/css/**","/img/**")
+                .antMatchers("/registration", "/", "/forgotPassword", "/login", "/css/**", "/img/**")
                 .permitAll()
 //                .antMatchers("/admin/**").access("hasRole('ADMIN')")
 //                .antMatchers("/act/**").access("hasRole('ADMIN')")
@@ -54,11 +54,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .dataSource(dataSource)
                 .passwordEncoder(passwordEncoder)
                 .usersByUsernameQuery("select username, password, true from client where username = ?")
-                .authoritiesByUsernameQuery("select username, password, role_id from client where username = ?");
+                .authoritiesByUsernameQuery("select username, r.name as role from client inner join role r on r.id = client.role_id where username = ?");
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .passwordEncoder(passwordEncoder)
                 .usersByUsernameQuery("select username, password, true from manager where username = ?")
-                .authoritiesByUsernameQuery("select username, password, role_id from manager where username = ?");
+                .authoritiesByUsernameQuery("select username, r.name as role from manager inner join role r on r.id = manager.role_id where username = ?");
     }
 }
