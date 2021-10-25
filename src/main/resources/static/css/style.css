@@ -131,6 +131,10 @@ a {
     text-align: left;
     padding: 15px;
 }
+.big-text{
+    text-overflow: ellipsis;
+    width: 200px;
+}
 .table-container {
     padding: 2% 20%;
     font-size: 18px;

@@ -20,11 +20,6 @@
                         <img th:src="@{/img/account.png}" class="account-bin">
                     </a></li>
                 </div>
-                <div th:if="${#request.isUserInRole('MANAGER')}">
-                    <li><a class="a-link-margin" th:href="@{/seller/personalAccount}"><img th:src="@{/img/account.png}"
-                                                                                           class="account-bin">
-                    </a></li>
-                </div>
                 <li><a class="a-link-margin p-l-15" th:href="@{/logout}">
                     <img th:src="@{/img/exit.png}" class="account-bin">
                 </a></li>
@@ -57,6 +52,11 @@
             <li class="p-l-30">
                 <a th:href="@{/manager/show-managers}">
                     <div class="centerVertical centerHorizon buttonMenu">Менеджеры</div>
+                </a>
+            </li>
+            <li class="p-l-30">
+                <a th:href="@{/news/news}">
+                    <div class="centerVertical centerHorizon buttonMenu">Новости</div>
                 </a>
             </li>
         </ul>
