@@ -22,7 +22,16 @@ public class MainController {
     private final BCryptPasswordEncoder encoder;
 
     @RequestMapping(value = "/")
-    public String homePage() {
+    public String getMainPage(Authentication authentication) {
+        if (authentication == null) {
+            return "main/main";
+        } else {
+            return "redirect:/home";
+        }
+    }
+
+    @GetMapping("/home")
+    public String getHomePage() {
         return "home/home";
     }
 
