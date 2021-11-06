@@ -1,6 +1,5 @@
 package com.car.rent.model.DTO;
 
-import com.car.rent.model.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
