@@ -9,7 +9,7 @@ CREATE TABLE car_model
     id      BIGSERIAL PRIMARY KEY,
     name    VARCHAR(45) NOT NULL,
     make_id INT         NOT NULL,
-    CONSTRAINT fk_car_make_car_model FOREIGN KEY (make_id) REFERENCES car_make (id)
+    CONSTRAINT fk_car_make_car_model FOREIGN KEY (make_id) REFERENCES car_make (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE car
@@ -27,7 +27,7 @@ CREATE TABLE car
     engine_capacity FLOAT,
     engine_type     VARCHAR(45),
     consumption     FLOAT,
-    CONSTRAINT fk_car_model_car FOREIGN KEY (model_id) REFERENCES car_model (id)
+    CONSTRAINT fk_car_model_car FOREIGN KEY (model_id) REFERENCES car_model (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE role
@@ -48,7 +48,7 @@ CREATE TABLE client
     phone           VARCHAR(45)  NOT NULL,
     experience      INT          NOT NULL,
     role_id         INT          NOT NULL,
-    CONSTRAINT fk_role_client FOREIGN KEY (role_id) REFERENCES role (id)
+    CONSTRAINT fk_role_client FOREIGN KEY (role_id) REFERENCES role (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE contract
@@ -58,8 +58,8 @@ CREATE TABLE contract
     car_id     INT  NOT NULL,
     start_date DATE NOT NULL,
     end_date   DATE NOT NULL,
-    CONSTRAINT fk_client_contract FOREIGN KEY (client_id) REFERENCES client (id),
-    CONSTRAINT fk_car_contract FOREIGN KEY (car_id) REFERENCES car (id)
+    CONSTRAINT fk_client_contract FOREIGN KEY (client_id) REFERENCES client (id) ON DELETE CASCADE ON UPDATE CASCADE ,
+    CONSTRAINT fk_car_contract FOREIGN KEY (car_id) REFERENCES car (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE manager
@@ -68,7 +68,7 @@ CREATE TABLE manager
     username VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
     role_id  INT          NOT NULL,
-    CONSTRAINT fk_role_manager FOREIGN KEY (role_id) REFERENCES role (id)
+    CONSTRAINT fk_role_manager FOREIGN KEY (role_id) REFERENCES role (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE car_photo
@@ -76,7 +76,7 @@ CREATE TABLE car_photo
     id     BIGSERIAL PRIMARY KEY,
     car_id BIGSERIAL,
     path   VARCHAR(255),
-    CONSTRAINT fk_car_car_photo FOREIGN KEY (car_id) REFERENCES car (id)
+    CONSTRAINT fk_car_car_photo FOREIGN KEY (car_id) REFERENCES car (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE address
@@ -87,7 +87,7 @@ CREATE TABLE address
     building  VARCHAR(10) NOT NULL,
     apartment INT         NOT NULL,
     client_id INT         NOT NULL,
-    CONSTRAINT fk_client_address FOREIGN KEY (client_id) REFERENCES client (id)
+    CONSTRAINT fk_client_address FOREIGN KEY (client_id) REFERENCES client (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE accident
@@ -96,7 +96,7 @@ CREATE TABLE accident
     damage      INT  NOT NULL,
     date        DATE NOT NULL,
     contract_id INT  NOT NULL,
-    CONSTRAINT fk_contract_accident FOREIGN KEY (contract_id) REFERENCES contract (id)
+    CONSTRAINT fk_contract_accident FOREIGN KEY (contract_id) REFERENCES contract (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE news
