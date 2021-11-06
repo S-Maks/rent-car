@@ -1,5 +1,6 @@
 package com.car.rent.controller.car;
 
+import com.car.rent.model.Car;
 import com.car.rent.model.CarMake;
 import com.car.rent.model.CarModel;
 import com.car.rent.model.DTO.CarDTO;
@@ -8,9 +9,11 @@ import com.car.rent.service.CarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/car")
@@ -73,6 +76,19 @@ public class CarController {
     @PostMapping("/add")
     public String getAddCarModel(@ModelAttribute CarDTO dto) {
         carService.addCar(dto);
+        return "redirect:/car/cars";
+    }
+
+    @GetMapping(value = "/edit")
+    public String editUser(@RequestParam(value = "id", required = true) Long id, Model model) {
+        CarDTO dto = carService.getCarDTOById(id);
+        model.addAttribute("car", dto);
+        return "car/edit";
+    }
+
+    @PostMapping(value = "/edit")
+    public String editUser(@ModelAttribute CarDTO dto, BindingResult errors, Model model) throws Exception {
+        carService.editCar(dto);
         return "redirect:/car/cars";
     }
 }

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/util.css}">
+  <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.png}"/>
+</head>
+<body class="limiter">
+<header>
+  <div class="container">
+    <div class="navbar">
+      <a class="a-link-margin p-l-200" th:href="@{/} "><img th:src="@{/img/home.png}" class="account-bin">
+      </a>
+      <ul class="p-l-500">
+        <li><a class="a-link-margin p-l-100" th:href="@{/logout}">
+          <img th:src="@{/img/exit.png}" class="account-bin">
+        </a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+
+<form class="box" action="#" th:action="@{/car/edit}" th:object="${car}" method="post">
+  <div class="c-label box c-box-input" style="margin-top: 15%">
+
+    <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+      <input class="input100" th:value="${car.plateNumber}" type="text" placeholder="Номерной знак" id="plateNumber" name="plateNumber">
+    </div>
+
+    <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+      <input class="input100" th:value="${car.pricePerDay}" type="text" placeholder="Цена в день" id="pricePerDay" name="pricePerDay">
+    </div>
+
+    <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+      <input class="input100" th:value="${car.transmission}" type="text" placeholder="Коробка передач" id="transmission" name="transmission">
+    </div>
+    <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+      <label>Кондиционер</label>
+      <input type="checkbox" th:value="${car.airConditioner}" checked="checked" id="airConditioner" name="airConditioner"/>
+    </div>
+
+    <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+      <input class="input100" th:value="${car.body}" type="text" placeholder="Описание" id="body" name="body">
+    </div>
+
+    <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+      <input class="input100" th:value="${car.seats}" type="text" placeholder="Места" id="seats" name="seats">
+    </div>
+
+    <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+      <input class="input100" th:value="${car.productionYear}" type="text" placeholder="Год выпуска" id="productionYear" name="productionYear">
+    </div>
+
+    <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+      <input class="input100" th:value="${car.class_auto}" type="text" placeholder="Класс авто" id="class_auto" name="class_auto">
+    </div>
+
+    <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+      <input class="input100" th:value="${car.engineCapacity}" type="text" placeholder="Объем двигателя" id="engineCapacity" name="engineCapacity">
+    </div>
+
+
+    <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+      <input class="input100" th:value="${car.engineType}" type="text" placeholder="Тип двигателя" id="engineType" name="engineType">
+    </div>
+
+
+    <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+      <input class="input100" th:value="${car.consumption}" type="text" placeholder="Потребление" id="consumption" name="consumption">
+    </div>
+
+    <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+      <input class="input100" th:value="${car.nameCarModel}" type="text" placeholder="Модель" id="nameCarModel" name="nameCarModel">
+    </div>
+
+    <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+      <input class="input100" th:value="${car.nameCarMake}" type="text" placeholder="Марка" id="nameCarMake" name="nameCarMake">
+    </div>
+
+    <input type="hidden" th:value="${car.id}" th:field="*{id}"/>
+
+    <div class="container-login100-form-btn p-t-10">
+      <button class="login100-form-btn">
+        Изменить
+      </button>
+    </div>
+
+  </div>
+</form>
+
+</body>
+</html>

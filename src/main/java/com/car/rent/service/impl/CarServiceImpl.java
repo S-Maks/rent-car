@@ -54,6 +54,12 @@ public class CarServiceImpl implements CarService {
 
     @Override
     @Transactional
+    public CarDTO getCarDTOById(Long id) {
+        return CarDTO.transferToDTO(carRepository.findById(id).get());
+    }
+
+    @Override
+    @Transactional
     public void addCar(CarDTO dto) {
         CarMake make = getOrCreateCarMake(dto.getNameCarMake());
         CarModel model = getOrCreateCarModel(dto.getNameCarModel(), make);
@@ -74,6 +80,49 @@ public class CarServiceImpl implements CarService {
         carRepository.save(car);
     }
 
+    @Override
+    @Transactional
+    public void addCarMake(NameDTO name) {
+        CarMake carMake = CarMake.builder()
+                .name(name.getName())
+                .build();
+        carMakeRepository.save(carMake);
+    }
+
+    @Override
+    @Transactional
+    public void deleteCar(Long id) {
+        carRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public void deleteCarMake(Long id) {
+        carMakeRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public void editCar(CarDTO dto) {
+        CarMake make = getOrCreateCarMake(dto.getNameCarMake());
+        CarModel model = getOrCreateCarModel(dto.getNameCarModel(), make);
+        Car car = Car.builder()
+                .id(dto.getId())
+                .plateNumber(dto.getPlateNumber())
+                .pricePerDay(dto.getPricePerDay())
+                .transmission(dto.getTransmission())
+                .airConditioner(dto.getAirConditioner())
+                .body(dto.getBody())
+                .seats(dto.getSeats())
+                .productionYear(dto.getProductionYear())
+                .class_auto(dto.getClass_auto())
+                .engineCapacity(dto.getEngineCapacity())
+                .engineType(dto.getEngineType())
+                .consumption(dto.getConsumption())
+                .carModel(model)
+                .build();
+        carRepository.save(car);
+    }
     private CarMake getOrCreateCarMake(String name) {
         Optional<CarMake> carMake = carMakeRepository.findFirstByName(name.toUpperCase());
         if (carMake.isPresent()) {
@@ -97,26 +146,5 @@ public class CarServiceImpl implements CarService {
                     .build();
             return carModelRepository.save(model);
         }
-    }
-
-    @Override
-    @Transactional
-    public void addCarMake(NameDTO name) {
-        CarMake carMake = CarMake.builder()
-                .name(name.getName())
-                .build();
-        carMakeRepository.save(carMake);
-    }
-
-    @Override
-    @Transactional
-    public void deleteCar(Long id) {
-        carRepository.deleteById(id);
-    }
-
-    @Override
-    @Transactional
-    public void deleteCarMake(Long id) {
-        carMakeRepository.deleteById(id);
     }
 }
