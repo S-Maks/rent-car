@@ -22,10 +22,6 @@
         </div>
     </div>
 </header>
-<ul class="p-l-370">
-    <div><a
-            th:href="@{/car/car-make}" class="buttonMenu centerHorizon centerVertical ">Добавить</a></div>
-</ul>
 <div class="text-center">
     <div th:if="${not #lists.isEmpty(result)}">
         <h1 class="c-text-h1">Модели</h1>
@@ -35,7 +31,6 @@
                 <tr>
                     <th class="a-link-no-margin">Id</th>
                     <th class="a-link-no-margin">Модель</th>
-                    <th class="a-link-no-margin">Добавить авто</th>
                     <th class="a-link-no-margin"></th>
                 </tr>
                 </thead>
@@ -43,8 +38,6 @@
                 <tr th:each="find: ${result}">
                     <td><a th:text="${find.id}"></a></td>
                     <td th:utext="${find.name}" class="a-link-no-margin"></td>
-                    <td class="td-x-container"><a class="a-link-no-margin red-x"
-                                                  th:href="'/car/car-model/add?id=' + ${find.id}">+</a></td>
                     <td class="td-x-container"><a class="a-link-no-margin red-x"
                                                   th:href="'/car/deleteModel?id=' + ${find.id}"><img
                             th:src="@{/img/trash-bin.png}" class="crash-bin"></a></td>

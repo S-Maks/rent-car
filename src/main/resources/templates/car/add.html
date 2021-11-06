@@ -14,11 +14,57 @@
         <form class="login100-form validate-form" th:action="@{/car/add}" method="post">
 
             <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
-                <input class="input100" type="hidden" placeholder="id модели" id="id" value="'${idMake}'">
+                <input class="input100" type="text" placeholder="Номерной знак" id="plateNumber" name="plateNumber">
             </div>
 
             <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
-                <input class="input100" type="text" placeholder="Имя марки" id="name" name="name">
+                <input class="input100" type="text" placeholder="Цена в день" id="pricePerDay" name="pricePerDay">
+            </div>
+
+            <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+                <input class="input100" type="text" placeholder="Коробка передач" id="transmission" name="transmission">
+            </div>
+            <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+                <label>Кондиционер</label>
+                <input type="checkbox" checked="checked" id="airConditioner" name="airConditioner"/>
+            </div>
+
+            <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+                <input class="input100" type="text" placeholder="Описание" id="body" name="body">
+            </div>
+
+            <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+                <input class="input100" type="text" placeholder="Места" id="seats" name="seats">
+            </div>
+
+            <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+                <input class="input100" type="text" placeholder="Год выпуска" id="productionYear" name="productionYear">
+            </div>
+
+            <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+                <input class="input100" type="text" placeholder="Класс авто" id="class_auto" name="class_auto">
+            </div>
+
+            <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+                <input class="input100" type="text" placeholder="Объем двигателя" id="engineCapacity" name="engineCapacity">
+            </div>
+
+
+            <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+                <input class="input100" type="text" placeholder="Тип двигателя" id="engineType" name="engineType">
+            </div>
+
+
+            <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+                <input class="input100" type="text" placeholder="Потребление" id="consumption" name="consumption">
+            </div>
+
+            <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+                <input class="input100" type="text" placeholder="Модель" id="nameCarModel" name="nameCarModel">
+            </div>
+
+            <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+                <input class="input100" type="text" placeholder="Марка" id="nameCarMake" name="nameCarMake">
             </div>
 
             <div class="container-login100-form-btn p-t-10">

@@ -65,15 +65,14 @@ public class CarController {
         return "car/car-model/models";
     }
 
-    @GetMapping("/car-model/add")
-    public String getAddCarModelPage(@RequestParam(value = "idMake", required = false, defaultValue = "") String idMake, Model model) {
-        model.addAttribute("idMake", idMake);
-        return "car/car-model/add";
+    @GetMapping("/add")
+    public String getPageAddCar() {
+        return "car/add";
     }
 
     @PostMapping("/add")
-    public String getAddCarModel(@RequestParam(value = "id", required = false) String id,@ModelAttribute NameDTO name) {
-        System.out.println(name);
-        return "redirect:/home";
+    public String getAddCarModel(@ModelAttribute CarDTO dto) {
+        carService.addCar(dto);
+        return "redirect:/car/cars";
     }
 }

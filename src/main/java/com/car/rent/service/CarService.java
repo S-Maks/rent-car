@@ -15,7 +15,7 @@ public interface CarService {
 
     List<CarModel> getCarModels(Long id);
 
-    void addCar(NewDTO newDTO);
+    void addCar(CarDTO newDTO);
 
     void addCarMake(NameDTO name);
 
