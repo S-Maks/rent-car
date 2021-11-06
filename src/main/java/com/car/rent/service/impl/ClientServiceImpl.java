@@ -6,6 +6,7 @@ import com.car.rent.repository.ClientRepository;
 import com.car.rent.repository.RoleRepository;
 import com.car.rent.service.ClientService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -30,5 +31,10 @@ public class ClientServiceImpl implements ClientService {
                 .roleId(roleRepository.findByName("ROLE_CLIENT").get())
                 .build();
         clientRepository.save(clientModel);
+    }
+
+    @Override
+    public ClientDTO findPersonalInfo() {
+        return ClientDTO.transferToDTO(clientRepository.findFirstByUsername(SecurityContextHolder.getContext().getAuthentication().getName()).get());
     }
 }

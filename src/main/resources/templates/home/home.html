@@ -16,7 +16,7 @@
             </a>
             <ul class="p-l-500">
                 <div th:if="${#request.isUserInRole('CLIENT')}">
-                    <li><a class="a-link-margin" th:href="@{/buyer/personalAccount}">
+                    <li><a class="a-link-margin" th:href="@{/user/personal-info}">
                         <img th:src="@{/img/account.png}" class="account-bin">
                     </a></li>
                 </div>

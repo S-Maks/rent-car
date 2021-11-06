@@ -1,5 +1,6 @@
 package com.car.rent.model.DTO;
 
+import com.car.rent.model.Client;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,4 +24,16 @@ public class ClientDTO {
     private String phone;
 
     private Integer experience;
+
+    public static ClientDTO transferToDTO(Client client) {
+        return ClientDTO.builder()
+                .username(client.getUsername())
+                .firstName(client.getFirstName())
+                .lastName(client.getFirstName())
+                .document(client.getDocument())
+                .documentNumber(client.getDocumentNumber())
+                .phone(client.getPhone())
+                .experience(client.getExperience())
+                .build();
+    }
 }
