@@ -3,8 +3,10 @@ package com.car.rent.controller.car;
 import com.car.rent.model.CarMake;
 import com.car.rent.model.CarModel;
 import com.car.rent.model.DTO.CarDTO;
+import com.car.rent.model.DTO.ContractDTO;
 import com.car.rent.model.DTO.NameDTO;
 import com.car.rent.service.CarService;
+import com.car.rent.service.ContractService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CarController {
     private final CarService carService;
+    private final ContractService contractService;
 
     @GetMapping("/cars")
     public String getCarts(
@@ -154,6 +157,18 @@ public class CarController {
     @PostMapping(value = "/edit")
     public String editUser(@ModelAttribute CarDTO dto, BindingResult errors, Model model) throws Exception {
         carService.editCar(dto);
+        return "redirect:/car/cars";
+    }
+
+    @GetMapping("/rent")
+    public String rentCar(@RequestParam(value = "id", required = false) Long id, Model model) {
+        model.addAttribute("carId", id);
+        return "car/rent";
+    }
+
+    @PostMapping("/rent")
+    public String rentCarPost(@RequestParam(value = "startDate") String startDate, @RequestParam(value = "endDate") String endDate, @RequestParam(value = "carId") String carId) {
+        contractService.save(startDate, endDate, carId);
         return "redirect:/car/cars";
     }
 }
