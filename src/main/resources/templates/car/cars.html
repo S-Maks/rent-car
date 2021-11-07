@@ -43,14 +43,38 @@
             <input class="search" type="text" name="search" th:value="${search}"
                    placeholder="Поиск по марке, модели">
         </label>
-        <select size="6" name="sort">
-            <option disabled>Тип сортировки</option>
-            <option value="none" selected>Не сортировать</option>
-            <option value="1">По убыванию года</option>
-            <option value="2">По возрастанию года</option>
-            <option value="3">А-Я марка</option>
-            <option value="4">Я-А марка</option>
-        </select>
+        <div>
+            <select size="6" name="sort">
+                <option disabled>Тип сортировки</option>
+                <option value="none" selected>Не сортировать</option>
+                <option value="1">По убыванию года</option>
+                <option value="2">По возрастанию года</option>
+                <option value="3">А-Я марка</option>
+                <option value="4">Я-А марка</option>
+            </select>
+        </div>
+
+        <h2>Год выпуска</h2>
+        <label>
+            <input class="input-year" type="text" name="fromYear"
+                   placeholder="От">
+        </label>
+        <label>
+            <input class="input-year" placeholder="До" type="text" id="toYear" name="toYear">
+        </label>
+        <div>
+            <label>
+                <input class="search" type="text" name="fuel"
+                       placeholder="Тип топлива">
+            </label>
+        </div>
+        <div>
+            <label>
+                <input class="search" type="text" name="auto"
+                       placeholder="Класс авто">
+            </label>
+        </div>
+
         <div class="container-login100-form-btn p-t-10">
             <button class="cars-form">
                 Показать
@@ -83,11 +107,13 @@
                         <td th:utext="${find.plateNumber}" class="a-link-no-margin"></td>
                         <td th:utext="${find.productionYear}" class="a-link-no-margin"></td>
                         <td th:utext="${find.pricePerDay}" class="a-link-no-margin"></td>
-                        <td th:if="${#request.isUserInRole('MANAGER')}" class="td-x-container"><a class="a-link-no-margin red-x"
-                                                      th:href="'/car/edit?id=' + ${find.id}"><img
+                        <td th:if="${#request.isUserInRole('MANAGER')}" class="td-x-container"><a
+                                class="a-link-no-margin red-x"
+                                th:href="'/car/edit?id=' + ${find.id}"><img
                                 th:src="@{/img/edit.png}" class="crash-bin"></a></td>
-                        <td th:if="${#request.isUserInRole('MANAGER')}" class="td-x-container"><a class="a-link-no-margin red-x"
-                                                      th:href="'/car/deleteCar?id=' + ${find.id}"><img
+                        <td th:if="${#request.isUserInRole('MANAGER')}" class="td-x-container"><a
+                                class="a-link-no-margin red-x"
+                                th:href="'/car/deleteCar?id=' + ${find.id}"><img
                                 th:src="@{/img/trash-bin.png}" class="crash-bin"></a></td>
                     </tr>
                     </tbody>

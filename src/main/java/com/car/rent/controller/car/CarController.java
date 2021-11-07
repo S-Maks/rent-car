@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/car")
@@ -21,9 +22,17 @@ public class CarController {
     private final CarService carService;
 
     @GetMapping("/cars")
-    public String getCarts(@RequestParam(value = "search", required = false, defaultValue = "") String name, @RequestParam(value = "sort", required = false, defaultValue = "") String sort, Model model) {
-        List<CarDTO> carModelList = carService.getCarsGeneralInfoByParam(name);
-        model.addAttribute("result", sortList(carModelList, sort));
+    public String getCarts(
+            @RequestParam(value = "search", required = false, defaultValue = "") String name,
+            @RequestParam(value = "sort", required = false, defaultValue = "") String sort,
+            @RequestParam(value = "fromYear", required = false, defaultValue = "") String fromYear,
+            @RequestParam(value = "toYear", required = false, defaultValue = "") String toYear,
+            @RequestParam(value = "fuel", required = false, defaultValue = "") String fuel,
+            @RequestParam(value = "auto", required = false, defaultValue = "") String auto,
+            Model model) {
+        List<CarDTO> carModelList = sortList(carService.getCarsGeneralInfoByParam(name), sort);
+        carModelList = filterList(carModelList, fromYear, toYear, fuel, auto);
+        model.addAttribute("result", carModelList);
         model.addAttribute("search", name);
         return "car/cars";
     }
@@ -51,6 +60,37 @@ public class CarController {
                 break;
             }
         }
+        return carModelList;
+    }
+
+    private List<CarDTO> filterList(List<CarDTO> carModelList,
+                                    String fromYear,
+                                    String toYear,
+                                    String fuel,
+                                    String auto) {
+        if (!"".equals(fromYear)) {
+            carModelList = carModelList.stream()
+                    .filter(entry -> entry.getProductionYear() >= Integer.parseInt(fromYear))
+                    .collect(Collectors.toList());
+        }
+        if (!"".equals(toYear)) {
+            carModelList = carModelList.stream()
+                    .filter(entry -> entry.getProductionYear() <= Integer.parseInt(toYear))
+                    .collect(Collectors.toList());
+        }
+
+        if (!"".equals(fuel)) {
+            carModelList = carModelList.stream()
+                    .filter(entry -> entry.getEngineType().equalsIgnoreCase(fuel))
+                    .collect(Collectors.toList());
+        }
+
+        if (!"".equals(auto)) {
+            carModelList = carModelList.stream()
+                    .filter(entry -> entry.getClass_auto().equalsIgnoreCase(auto))
+                    .collect(Collectors.toList());
+        }
+
         return carModelList;
     }
 
