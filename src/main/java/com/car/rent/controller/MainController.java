@@ -55,6 +55,6 @@ public class MainController {
     @PostMapping("/registration")
     public String registrationPagePost(@ModelAttribute ClientDTO client) {
         clientService.registration(client);
-        return "redirect:/signIn";
+        return "redirect:/home";
     }
 }
