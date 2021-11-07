@@ -26,7 +26,7 @@
 
 <div class="text-center">
     <h1 class="c-text-h1 margin-five">Поиск новостей</h1>
-    <form th:action="@{/manager/show-managers}" method="get">
+    <form th:action="@{/news/news}" method="get">
 
         <input class="search" type="text" name="search" th:value="${search}"
                placeholder="Поиск по заголовку или тексту">
