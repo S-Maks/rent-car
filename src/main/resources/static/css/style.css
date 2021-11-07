@@ -21,12 +21,15 @@ button {
     font-size: 2.25rem;
     font-weight: 800;
 }
-.choice{
-    padding:2% 15%;
+
+.choice {
+    padding: 2% 15%;
 }
-.homeUl{
-padding-top: 20px;
+
+.homeUl {
+    padding-top: 20px;
 }
+
 .margin-five {
     margin-top: 1%;
 }
@@ -86,7 +89,8 @@ padding-top: 20px;
     margin-left: 2.6%;
     margin-right: 18.3%;
 }
-.incorrect{
+
+.incorrect {
     color: red;
     font-size: 24px;
     margin-left: 18px;
@@ -123,7 +127,7 @@ a {
 
 .a-link-margin {
     margin-left: 2.5rem;
-    font-size:2rem;
+    font-size: 2rem;
 }
 
 .a-link-no-margin {
@@ -131,20 +135,23 @@ a {
     text-align: left;
     padding: 15px;
 }
-.big-text{
+
+.big-text {
     text-overflow: ellipsis;
     width: 200px;
 }
+
 .table-container {
     padding: 2% 20%;
     font-size: 18px;
 }
-.table-container-user{
+
+.table-container-user {
     padding-left: 14%;
     font-size: 18px;
 }
 
-.table-container-car-make{
+.table-container-car-make {
     padding-left: 41%;
     font-size: 18px;
 }
@@ -153,43 +160,52 @@ a {
     padding-left: 40%;
     font-size: 18px;
 }
-.table-container-act{
+
+.table-container-act {
     padding: 2% 2%;
     font-size: 18px;
 }
-.table-container-product{
+
+.table-container-product {
     padding-left: 27%;
     font-size: 18px;
 
 }
-.addProduct{
+
+.addProduct {
     padding-left: 44%;
     padding-block-end: 8px;
 }
+
 .logo {
     margin-left: 20px;
     height: 35px;
     width: 35px;
 }
-.logo:hover{
+
+.logo:hover {
     transition: 2s;
 }
-th{
+
+th {
     background-color: #1c9f8a;
     color: white;
 }
 
-th, td{
+th, td {
     text-align: left;
     padding: 8px;
 }
-td{
-background-color: white;
+
+td {
+    background-color: white;
     color: #606665;
 }
-table{
-    border-spacing:0px 2px;
+
+table {
+    border-spacing: 0px 2px;
 }
+
 .search {
     font-size: 1.2rem;
     padding: 0.2%;
@@ -202,32 +218,61 @@ table{
     transition: width 0.4s ease-in-out;
     border: 2px solid #000;
 }
-.crash-bin{
+
+.crash-bin {
     width: 40px;
     height: 35px;
 }
-.crash-bin:hover{
+
+.crash-bin:hover {
     transform: scale(0.9);
     transition: 300ms;
 }
-.lock{
+
+.lock {
     width: 40px;
     height: 35px;
 }
-.lock:hover{
+
+.lock:hover {
     transform: scale(0.9);
     transition: 300ms;
 }
-.start{
+
+.start {
     font-size: 24px;
     font-weight: bold;
     color: #333333;
     padding-left: 25%;
 }
-.add{
+
+.add {
     padding-left: 39%;
 }
+
 .table-container-addProduct {
     padding: 2% 26%;
     font-size: 18px;
+}
+
+.personal-info {
+    display: flex;
+}
+
+.padding-personal-info {
+    padding: 10px;
+    background-color: #F3F3F3FF;
+    text-align: center;
+}
+
+.personal-info-document {
+    padding-top: 30px;
+}
+
+.padding-main-text {
+    padding-top: 30px;
+}
+
+.padding-left-client-menu {
+    padding-left: 357px;
 }

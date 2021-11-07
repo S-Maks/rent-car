@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -19,5 +20,18 @@ public class UserController {
         ClientDTO dto = clientService.findPersonalInfo();
         model.addAttribute("client", dto);
         return "user/personal-info";
+    }
+
+    @GetMapping("/edit")
+    public String getPagePersonalInfo(Model model) {
+        ClientDTO dto = clientService.findPersonalInfo();
+        model.addAttribute("client", dto);
+        return "user/edit";
+    }
+
+    @PostMapping("/edit")
+    public String editInfo(ClientDTO dto) {
+        clientService.edit(dto);
+        return "redirect:/user/personal-info";
     }
 }

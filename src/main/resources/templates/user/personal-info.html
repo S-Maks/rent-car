@@ -14,8 +14,14 @@
         <div class="navbar">
             <a class="a-link-margin p-l-200" th:href="@{/} "><img th:src="@{/img/home.png}" class="account-bin">
             </a>
-            <ul class="p-l-500">
-                <li><a class="a-link-margin p-l-100" th:href="@{/logout}">
+            <ul class="padding-left-client-menu">
+                <li><a class="a-link-margin" th:href="@{/user/edit}">
+                    <img th:src="@{/img/edit.png}" class="account-bin">
+                </a></li>
+                <li><a class="a-link-margin" th:href="@{/user/personal-info}">
+                    <img th:src="@{/img/account.png}" class="account-bin">
+                </a></li>
+                <li><a class="a-link-margin p-l-15" th:href="@{/logout}">
                     <img th:src="@{/img/exit.png}" class="account-bin">
                 </a></li>
             </ul>
@@ -24,32 +30,51 @@
 </header>
 
 <div class="table-container">
-    <table>
-        <thead>
-        <tr >
-            <th class="a-link-no-margin">Имя</th>
-            <th class="a-link-no-margin">Фамилия</th>
-            <th class="a-link-no-margin">Пользователь</th>
-            <th class="a-link-no-margin">Документ</th>
-            <th class="a-link-no-margin">Номер документа</th>
-            <th class="a-link-no-margin">Телефон</th>
-            <th class="a-link-no-margin">Опыт(полных лет)</th>
-            <th class="a-link-no-margin">Просмотреть покупки</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr >
-            <td th:utext="${client.firstName}" class="a-link-no-margin"></td>
-            <td th:utext="${client.lastName}" class="a-link-no-margin"></td>
-            <td th:utext="${client.username}" class="a-link-no-margin"></td>
-            <td th:utext="${client.document}" class="a-link-no-margin"></td>
-            <td th:utext="${client.documentNumber}" class="a-link-no-margin"></td>
-            <td th:utext="${client.phone}" class="a-link-no-margin"></td>
-            <td th:utext="${client.experience}" class="a-link-no-margin"></td>
-            <td class="a-link-no-margin"><a th:href="@{/buyer/shopList}"><img th:src="@{/img/buy.png}" class="crash-bin"></a></td>
-        </tr>
-        </tbody>
-    </table>
+    <h1 class="padding-main-text">Персональная информация</h1>
+    <div class="personal-info">
+
+        <h3 class="padding-personal-info">
+            Имя пользователя
+            <div th:utext="${client.username}">
+            </div>
+        </h3>
+        <h3 class="padding-personal-info">
+            Имя
+            <div th:utext="${client.firstName}">
+            </div>
+        </h3>
+        <h3 class="padding-personal-info">
+            Фамилия
+            <div th:utext="${client.lastName}">
+            </div>
+        </h3>
+        <h3 class="padding-personal-info">
+            Телефон
+            <div th:utext="${client.phone}">
+            </div>
+        </h3>
+    </div>
+
+    <h1 class="padding-main-text">Водительское удостоверение</h1>
+    <div class="personal-info-document personal-info">
+
+        <h3 class="padding-personal-info">
+            Документ
+            <div th:utext="${client.document}">
+            </div>
+        </h3>
+        <h3 class="padding-personal-info">
+            Номер документа
+            <div th:utext="${client.documentNumber}">
+            </div>
+        </h3>
+        <h3 class="padding-personal-info">
+            Опыт(полных лет)
+            <div th:utext="${client.experience}">
+            </div>
+        </h3>
+    </div>
+
 </div>
 
 </body>

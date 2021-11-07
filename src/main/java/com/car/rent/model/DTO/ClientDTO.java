@@ -9,6 +9,8 @@ import lombok.Data;
 @AllArgsConstructor
 @Builder
 public class ClientDTO {
+    private Long id;
+
     private String username;
 
     private String password;
@@ -27,6 +29,7 @@ public class ClientDTO {
 
     public static ClientDTO transferToDTO(Client client) {
         return ClientDTO.builder()
+                .id(client.getId())
                 .username(client.getUsername())
                 .firstName(client.getFirstName())
                 .lastName(client.getFirstName())

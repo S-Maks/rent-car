@@ -9,6 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.beans.Transient;
 
 @Service
 @RequiredArgsConstructor
@@ -36,5 +39,21 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public ClientDTO findPersonalInfo() {
         return ClientDTO.transferToDTO(clientRepository.findFirstByUsername(SecurityContextHolder.getContext().getAuthentication().getName()).get());
+    }
+
+    @Override
+    @Transactional
+    public void edit(ClientDTO client) {
+        Client model = clientRepository.findById(client.getId()).get();
+        if (client.getPassword() != null) {
+            model.setPassword(encoder.encode(client.getPassword()));
+        }
+        model.setFirstName(client.getFirstName());
+        model.setLastName(client.getLastName());
+        model.setDocument(client.getDocument());
+        model.setDocumentNumber(client.getDocumentNumber());
+        model.setPhone(client.getPhone());
+        model.setExperience(client.getExperience());
+        clientRepository.save(model);
     }
 }
