@@ -14,7 +14,7 @@
         <div class="navbar">
             <a class="a-link-margin p-l-200" th:href="@{/} "><img th:src="@{/img/home.png}" class="account-bin">
             </a>
-            <ul class="p-l-500">
+            <ul th:if="${#request.isUserInRole('MANAGER')||#request.isUserInRole('CLIENT')}" class="p-l-500">
                 <li><a class="a-link-margin p-l-100" th:href="@{/logout}">
                     <img th:src="@{/img/exit.png}" class="account-bin">
                 </a></li>
