@@ -1,6 +1,5 @@
 package com.car.rent.controller.car;
 
-import com.car.rent.model.Car;
 import com.car.rent.model.CarMake;
 import com.car.rent.model.CarModel;
 import com.car.rent.model.DTO.CarDTO;
@@ -12,8 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/car")
@@ -22,11 +21,37 @@ public class CarController {
     private final CarService carService;
 
     @GetMapping("/cars")
-    public String getCarts(@RequestParam(value = "search", required = false, defaultValue = "") String name, Model model) {
+    public String getCarts(@RequestParam(value = "search", required = false, defaultValue = "") String name, @RequestParam(value = "sort", required = false, defaultValue = "") String sort, Model model) {
         List<CarDTO> carModelList = carService.getCarsGeneralInfoByParam(name);
-        model.addAttribute("result", carModelList);
+        model.addAttribute("result", sortList(carModelList, sort));
         model.addAttribute("search", name);
         return "car/cars";
+    }
+
+    private List<CarDTO> sortList(List<CarDTO> carModelList, String sort) {
+        switch (sort) {
+            case "":
+            case "none": {
+                return carModelList;
+            }
+            case "1": {
+                carModelList.sort(Comparator.comparingInt(CarDTO::getProductionYear).reversed());
+                break;
+            }
+            case "2": {
+                carModelList.sort(Comparator.comparingInt(CarDTO::getProductionYear));
+                break;
+            }
+            case "3": {
+                carModelList.sort(Comparator.comparing(CarDTO::getNameCarModel));
+                break;
+            }
+            case "4": {
+                carModelList.sort(Comparator.comparing(CarDTO::getNameCarModel).reversed());
+                break;
+            }
+        }
+        return carModelList;
     }
 
     @GetMapping("/deleteCar")

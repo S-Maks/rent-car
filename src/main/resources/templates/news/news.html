@@ -14,7 +14,7 @@
         <div class="navbar">
             <a class="a-link-margin p-l-200" th:href="@{/} "><img th:src="@{/img/home.png}" class="account-bin">
             </a>
-            <ul class="p-l-500">
+            <ul th:if="${#request.isUserInRole('MANAGER') || #request.isUserInRole('CLIENT')}" class="p-l-500">
                 <li><a class="a-link-margin p-l-100" th:href="@{/logout}">
                     <img th:src="@{/img/exit.png}" class="account-bin">
                 </a></li>
@@ -31,7 +31,7 @@
         <input class="search" type="text" name="search" th:value="${search}"
                placeholder="Поиск по заголовку или тексту">
 
-        <div class="addProduct"><a
+        <div class="addProduct" th:if="${#request.isUserInRole('MANAGER')}"><a
                 th:href="@{/news/add}" class="buttonMenu centerHorizon centerVertical ">Добавить</a></div>
 
         <div th:if="${#lists.isEmpty(result)}" class="c-label incorrect">Ничего не найдено!</div>
@@ -46,7 +46,7 @@
                         <th class="a-link-no-margin">Дата</th>
                         <th class="a-link-no-margin">Заголовок</th>
                         <th class="a-link-no-margin">Тело</th>
-                        <th class="a-link-no-margin"></th>
+                        <th th:if="${#request.isUserInRole('MANAGER')}" class="a-link-no-margin"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -55,7 +55,7 @@
                         <td th:utext="${#temporals.format(findUser.date, 'dd-MMM-yyyy')}" class="a-link-no-margin"></td>
                         <td th:utext="${findUser.title}" class="a-link-no-margin"></td>
                         <td th:utext="${findUser.text}" class="a-link-no-margin big-text"></td>
-                        <td class="td-x-container"><a class="a-link-no-margin red-x"
+                        <td th:if="${#request.isUserInRole('MANAGER')}" class="td-x-container"><a class="a-link-no-margin red-x"
                                                       th:href="'/news/delete?id=' + ${findUser.id}"><img
                                 th:src="@{/img/trash-bin.png}" class="crash-bin"></a></td>
                     </tr>
