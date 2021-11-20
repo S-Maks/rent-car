@@ -5,13 +5,16 @@ import com.car.rent.model.CarModel;
 import com.car.rent.model.DTO.CarDTO;
 import com.car.rent.model.DTO.ContractDTO;
 import com.car.rent.model.DTO.NameDTO;
+import com.car.rent.model.DTO.PhotoDTO;
 import com.car.rent.service.CarService;
 import com.car.rent.service.ContractService;
+import com.car.rent.service.PhotoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Comparator;
 import java.util.List;
@@ -23,6 +26,7 @@ import java.util.stream.Collectors;
 public class CarController {
     private final CarService carService;
     private final ContractService contractService;
+    private final PhotoService photoService;
 
     @GetMapping("/cars")
     public String getCarts(
@@ -169,6 +173,18 @@ public class CarController {
     @PostMapping("/rent")
     public String rentCarPost(@RequestParam(value = "startDate") String startDate, @RequestParam(value = "endDate") String endDate, @RequestParam(value = "carId") String carId) {
         contractService.save(startDate, endDate, carId);
+        return "redirect:/car/cars";
+    }
+
+    @GetMapping("/add-photo")
+    public String addPhoto(@RequestParam(value = "id", required = false) Long id, Model model) {
+        model.addAttribute("id", id);
+        return "car/add-photo";
+    }
+
+    @PostMapping("/add-photo")
+    public String addPhotoModel(@RequestParam(value = "id", required = false) Long id, @RequestParam("file") MultipartFile file) {
+        photoService.save(id, file);
         return "redirect:/car/cars";
     }
 }

@@ -97,6 +97,7 @@
                         <th class="a-link-no-margin">Цена</th>
                         <th th:if="${#request.isUserInRole('MANAGER')}" class="a-link-no-margin"></th>
                         <th th:if="${#request.isUserInRole('MANAGER')}" class="a-link-no-margin"></th>
+                        <th th:if="${#request.isUserInRole('MANAGER')}" class="a-link-no-margin"></th>
                         <th th:if="${#request.isUserInRole('CLIENT')}" class="a-link-no-margin"></th>
                     </tr>
                     </thead>
@@ -120,6 +121,10 @@
                                 class="a-link-no-margin red-x"
                                 th:href="'/car/deleteCar?id=' + ${find.id}"><img
                                 th:src="@{/img/trash-bin.png}" class="crash-bin"></a></td>
+                        <td th:if="${#request.isUserInRole('MANAGER')}" class="td-x-container"><a
+                                class="a-link-no-margin red-x"
+                                th:href="'/car/add-photo?id=' + ${find.id}"><img
+                                th:src="@{/img/photo.png}" class="crash-bin"></a></td>
                     </tr>
                     </tbody>
                 </table>
