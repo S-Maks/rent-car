@@ -1,6 +1,9 @@
 package com.car.rent.model.DTO;
 
 import com.car.rent.model.Car;
+import com.car.rent.repository.CarPhotoRepository;
+import com.car.rent.service.PhotoService;
+import com.car.rent.service.impl.PhotoServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -39,6 +42,8 @@ public class CarDTO {
     private String nameCarModel;
 
     private String nameCarMake;
+
+    private String photo;
 
     public static CarDTO transferToDTO(Car car) {
         return CarDTO.builder()

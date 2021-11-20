@@ -8,8 +8,10 @@ import com.car.rent.model.DTO.NameDTO;
 import com.car.rent.model.DTO.NewDTO;
 import com.car.rent.repository.CarMakeRepository;
 import com.car.rent.repository.CarModelRepository;
+import com.car.rent.repository.CarPhotoRepository;
 import com.car.rent.repository.CarRepository;
 import com.car.rent.service.CarService;
+import com.car.rent.service.PhotoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +27,8 @@ public class CarServiceImpl implements CarService {
     private final CarMakeRepository carMakeRepository;
     private final CarModelRepository carModelRepository;
     private final CarRepository carRepository;
+    private final CarPhotoRepository carPhotoRepository;
+    private final PhotoService photoService;
 
     @Override
     @Transactional
@@ -32,6 +36,7 @@ public class CarServiceImpl implements CarService {
         return carRepository
                 .findAll().stream()
                 .map(CarDTO::transferToDTO)
+                .peek(data -> data.setPhoto(photoService.findByCarId(data.getId())))
                 .filter(car -> car.getNameCarMake().toLowerCase().contains(param.toLowerCase())
                         || car.getNameCarModel().toLowerCase().contains(param.toLowerCase()))
                 .collect(Collectors.toList());
@@ -123,6 +128,7 @@ public class CarServiceImpl implements CarService {
                 .build();
         carRepository.save(car);
     }
+
     private CarMake getOrCreateCarMake(String name) {
         Optional<CarMake> carMake = carMakeRepository.findFirstByName(name.toUpperCase());
         if (carMake.isPresent()) {

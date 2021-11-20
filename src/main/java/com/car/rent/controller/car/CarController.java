@@ -16,6 +16,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -186,5 +189,12 @@ public class CarController {
     public String addPhotoModel(@RequestParam(value = "id", required = false) Long id, @RequestParam("file") MultipartFile file) {
         photoService.save(id, file);
         return "redirect:/car/cars";
+    }
+
+    @RequestMapping(value = "/image/{id}")
+    @ResponseBody
+    public byte[] getImage(@PathVariable(value = "id") String imageName) throws IOException {
+        File serverFile = new File("src/main/resources/static/img/upload/" + imageName);
+        return Files.readAllBytes(serverFile.toPath());
     }
 }

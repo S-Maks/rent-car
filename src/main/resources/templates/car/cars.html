@@ -103,6 +103,7 @@
                     </thead>
                     <tbody>
                     <tr th:each="find: ${result}">
+                        <img th:src="@{/car/image/{id}(id=${find.photo})}" width="250" height="250" alt="фото">
                         <td><a th:text="${find.id}"></a></td>
                         <td th:utext="${find.nameCarMake}" class="a-link-no-margin"></td>
                         <td th:utext="${find.nameCarModel}" class="a-link-no-margin"></td>

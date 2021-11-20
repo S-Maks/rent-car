@@ -6,6 +6,7 @@ import com.car.rent.repository.CarRepository;
 import com.car.rent.service.PhotoService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
@@ -19,7 +20,7 @@ public class PhotoServiceImpl implements PhotoService {
 
     @Override
     public void save(Long id, MultipartFile file) {
-        String path = UUID.randomUUID().toString();
+        String path = UUID.randomUUID() + "." + file.getContentType().split("/")[1];
         CarPhoto carPhoto = CarPhoto.builder()
                 .carId(carRepository.findById(id).get())
                 .path(path)
@@ -45,7 +46,14 @@ public class PhotoServiceImpl implements PhotoService {
 
     }
 
+    @Override
+    @Transactional
+    public String findByCarId(Long id) {
+        CarPhoto carPhoto = photoRepository.findByCarId(carRepository.findById(id).get()).stream().findFirst().orElse(null);
+        return carPhoto != null ? carPhoto.getPath() : "default-car.png";
+    }
+
     private File createFile(String uuid) {
-        return new File("upload/" + uuid);
+        return new File("src/main/resources/static/img/upload/" + uuid);
     }
 }
