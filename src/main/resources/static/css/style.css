@@ -135,7 +135,19 @@ a {
     text-align: left;
     padding: 15px;
 }
+.a-link-no-margin-true{
+    font-family: "Source Sans Pro Regular";
+    text-align: left;
+    padding: 15px;
+    background-color: #03ff22;
+}
 
+.a-link-no-margin-false{
+    font-family: "Source Sans Pro Regular";
+    text-align: left;
+    padding: 15px;
+    background-color: #c80000;
+}
 .big-text {
     text-overflow: ellipsis;
     width: 200px;

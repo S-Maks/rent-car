@@ -3,6 +3,7 @@ package com.car.rent.service.impl;
 import com.car.rent.model.Car;
 import com.car.rent.model.Client;
 import com.car.rent.model.Contract;
+import com.car.rent.model.enums.Status;
 import com.car.rent.repository.CarRepository;
 import com.car.rent.repository.ClientRepository;
 import com.car.rent.repository.ContractRepository;
@@ -12,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -29,7 +31,36 @@ public class ContractServiceImpl implements ContractService {
                 .endDate(LocalDateTime.parse(end))
                 .carId(car)
                 .clientId(client)
+                .status(Status.REVIEW)
                 .build();
+        contractRepository.save(contract);
+    }
+
+    @Override
+    public List<Contract> findAll() {
+        return contractRepository.findAll();
+    }
+
+    @Override
+    public List<Contract> findByStatus(String status) {
+        if (status.equals("")) {
+            return contractRepository.findAllByStatus(Status.REVIEW);
+        } else {
+            return contractRepository.findAllByStatus(Status.valueOf(status));
+        }
+    }
+
+    @Override
+    public void approved(Long id) {
+        Contract contract = contractRepository.findById(id).get();
+        contract.setStatus(Status.APPROVED);
+        contractRepository.save(contract);
+    }
+
+    @Override
+    public void blocked(Long id) {
+        Contract contract = contractRepository.findById(id).get();
+        contract.setStatus(Status.BLOCKED);
         contractRepository.save(contract);
     }
 }

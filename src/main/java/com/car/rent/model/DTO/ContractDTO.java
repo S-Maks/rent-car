@@ -1,5 +1,6 @@
 package com.car.rent.model.DTO;
 
+import com.car.rent.model.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,6 +16,8 @@ public class ContractDTO {
     private LocalDateTime startDate;
 
     private LocalDateTime endDate;
+
+    private Status status;
 
     private Long clientId;
 

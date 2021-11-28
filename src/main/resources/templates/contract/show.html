@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/util.css}">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/icon.png}"/>
+</head>
+<body class="limiter">
+<header>
+    <div class="container">
+        <div class="navbar">
+            <a class="a-link-margin p-l-200" th:href="@{/} "><img th:src="@{/img/home.png}" class="account-bin">
+            </a>
+            <ul th:if="${#request.isUserInRole('MANAGER')||#request.isUserInRole('CLIENT')}" class="p-l-500">
+                <li><a class="a-link-margin p-l-100" th:href="@{/logout}">
+                    <img th:src="@{/img/exit.png}" class="account-bin">
+                </a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+
+<div class="text-center">
+    <h1 class="c-text-h1 margin-five">Поиск контрактов</h1>
+    <form th:action="@{/contract/show}" method="get">
+
+        <label>
+            <input class="search" type="text" name="search" th:value="${search}"
+                   placeholder="Поиск по марке, модели">
+        </label>
+        <div>
+            <select size="4" name="status">
+                <option disabled>Статус контракта</option>
+                <option value="REVIEW" selected>preview</option>
+                <option value="BLOCKED">blocked</option>
+                <option value="APPROVED">approved</option>
+            </select>
+        </div>
+
+        <div class="container-login100-form-btn p-t-10">
+            <button class="cars-form">
+                Показать
+            </button>
+        </div>
+
+        <div th:if="${#lists.isEmpty(result)}" class="c-label incorrect">Ничего не найдено!</div>
+
+        <div th:if="${not #lists.isEmpty(result)}">
+            <h1 class="c-text-h1">Найденные контракты</h1>
+            <div class="table-container-user">
+                <table>
+                    <thead>
+                    <tr>
+                        <th class="a-link-no-margin">Id</th>
+                        <th class="a-link-no-margin">Время начала</th>
+                        <th class="a-link-no-margin">Время окончания</th>
+                        <th class="a-link-no-margin">Статус</th>
+                        <th class="a-link-no-margin">Клиент</th>
+                        <th class="a-link-no-margin">Автомобиль</th>
+                        <th class="a-link-no-margin">Опыт клиента</th>
+                        <th class="a-link-no-margin">Стаж для автомобиля</th>
+                        <th class="a-link-no-margin">Изменить статус</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="findUser: ${result}">
+                        <td><a th:text="${findUser.id}"></a></td>
+                        <td th:utext="${findUser.startDate}" class="a-link-no-margin"></td>
+                        <td th:utext="${findUser.endDate}" class="a-link-no-margin"></td>
+                        <td th:utext="${findUser.status}" class="a-link-no-margin"></td>
+                        <td th:utext="${findUser.clientId.username}" class="a-link-no-margin"></td>
+                        <td th:utext="${findUser.carId.carModel.makeId.name} + ' ' +
+                                      ${findUser.carId.carModel.name} + ' ' +
+                                      ${findUser.carId.productionYear} + 'г'" class="a-link-no-margin"></td>
+                        <div th:if="${findUser.clientId.experience} >= ${findUser.carId.experience}">
+                            <td th:utext="${findUser.clientId.experience}" class="a-link-no-margin-true"></td>
+                            <td th:utext="${findUser.carId.experience}" class="a-link-no-margin-true"></td>
+                        </div>
+                        <div th:if="${findUser.clientId.experience} < ${findUser.carId.experience}">
+                            <td th:utext="${findUser.clientId.experience}" class="a-link-no-margin-false"></td>
+                            <td th:utext="${findUser.carId.experience}" class="a-link-no-margin-false"></td>
+                        </div>
+                        <td class="td-x-container">
+                            <a class="a-link-no-margin red-x"
+                               th:href="'/contract/approved?id=' + ${findUser.id}"><img
+                                    th:src="@{/img/approved.png}" class="crash-bin"></a>
+                            <a class="a-link-no-margin red-x"
+                               th:href="'/contract/blocked?id=' + ${findUser.id}"><img
+                                    th:src="@{/img/blocked.png}" class="crash-bin"></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

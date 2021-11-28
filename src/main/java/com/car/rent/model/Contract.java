@@ -1,5 +1,6 @@
 package com.car.rent.model;
 
+import com.car.rent.model.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,6 +24,9 @@ public class Contract {
     private LocalDateTime startDate;
 
     private LocalDateTime endDate;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @ManyToOne
     @JoinColumn(name = "client_id")
