@@ -55,10 +55,11 @@ CREATE TABLE client
 CREATE TABLE contract
 (
     id         BIGSERIAL PRIMARY KEY,
-    client_id  INT  NOT NULL,
-    car_id     INT  NOT NULL,
-    start_date DATE NOT NULL,
-    end_date   DATE NOT NULL,
+    client_id  INT         NOT NULL,
+    car_id     INT         NOT NULL,
+    start_date DATE        NOT NULL,
+    end_date   DATE        NOT NULL,
+    status     VARCHAR(45) NOT NULL,
     CONSTRAINT fk_client_contract FOREIGN KEY (client_id) REFERENCES client (id) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_car_contract FOREIGN KEY (car_id) REFERENCES car (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -131,8 +132,8 @@ VALUES ('M5 седан', 1),
        ('Priora', 2);
 
 INSERT INTO car(model_id, plate_number, price_per_day, transmission, air_conditioner, body, seats, production_year,
-                class, engine_capacity, engine_type, consumption)
-VALUES (1, '0816BH-7', 100, 'автомат', true, 'Подогрев сидений', 4, 2019, 'Спортивный седан', 2.4, 'Бензин', 12);
+                class, engine_capacity, engine_type, consumption, experience)
+VALUES (1, '0816BH-7', 100, 'автомат', true, 'Подогрев сидений', 4, 2019, 'Спортивный седан', 2.4, 'Бензин', 12, 1);
 
 INSERT INTO role(name)
 VALUES ('ROLE_MANAGER'),
