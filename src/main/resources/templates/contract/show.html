@@ -63,7 +63,8 @@
                         <th class="a-link-no-margin">Автомобиль</th>
                         <th class="a-link-no-margin">Опыт клиента</th>
                         <th class="a-link-no-margin">Стаж для автомобиля</th>
-                        <th class="a-link-no-margin">Изменить статус</th>
+                        <th class="a-link-no-margin" th:if="${#request.isUserInRole('MANAGER')}">Изменить статус</th>
+                        <th class="a-link-no-margin"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -84,13 +85,18 @@
                             <td th:utext="${findUser.clientId.experience}" class="a-link-no-margin-false"></td>
                             <td th:utext="${findUser.carId.experience}" class="a-link-no-margin-false"></td>
                         </div>
-                        <td class="td-x-container">
+                        <td class="td-x-container" th:if="${#request.isUserInRole('MANAGER')}">
                             <a class="a-link-no-margin red-x"
                                th:href="'/contract/approved?id=' + ${findUser.id}"><img
                                     th:src="@{/img/approved.png}" class="crash-bin"></a>
                             <a class="a-link-no-margin red-x"
                                th:href="'/contract/blocked?id=' + ${findUser.id}"><img
                                     th:src="@{/img/blocked.png}" class="crash-bin"></a>
+                        </td>
+                        <td class="td-x-container">
+                            <a class="a-link-no-margin red-x"
+                               th:href="'/contract/save?id=' + ${findUser.id}"><img
+                                    th:src="@{/img/save.png}" class="crash-bin"></a>
                         </td>
                     </tr>
                     </tbody>

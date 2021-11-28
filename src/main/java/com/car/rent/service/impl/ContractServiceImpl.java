@@ -9,9 +9,13 @@ import com.car.rent.repository.ClientRepository;
 import com.car.rent.repository.ContractRepository;
 import com.car.rent.service.ContractService;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.io.FileUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -51,6 +55,12 @@ public class ContractServiceImpl implements ContractService {
     }
 
     @Override
+    public List<Contract> findByUser() {
+        Client client = clientRepository.findFirstByUsername(SecurityContextHolder.getContext().getAuthentication().getName()).get();
+        return contractRepository.findAllByClientId(client);
+    }
+
+    @Override
     public void approved(Long id) {
         Contract contract = contractRepository.findById(id).get();
         contract.setStatus(Status.APPROVED);
@@ -62,5 +72,18 @@ public class ContractServiceImpl implements ContractService {
         Contract contract = contractRepository.findById(id).get();
         contract.setStatus(Status.BLOCKED);
         contractRepository.save(contract);
+    }
+
+    @Override
+    public void saveFile(Long id, HttpServletResponse response) {
+        File file = new File("test.pdf");
+        response.setContentType("application/octet-stream");
+        response.setHeader("Content-Disposition", "filename=\"test.pdf\"");
+        try {
+            FileUtils.copyFile(file, response.getOutputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
@@ -37,6 +38,12 @@ public class ContractController {
     @GetMapping("/blocked")
     public String blocked(@RequestParam(value = "id", required = false) Long id, Model model) {
         contractService.blocked(id);
+        return "redirect:/contract/show";
+    }
+
+    @GetMapping("/save")
+    public String saveFile(@RequestParam(value = "id", required = false) Long id, Model model, HttpServletResponse response) {
+        contractService.saveFile(id, response);
         return "redirect:/contract/show";
     }
 }
