@@ -85,50 +85,51 @@
 
         <div th:if="${not #lists.isEmpty(result)}">
             <h1 class="c-text-h1">Найденные авто</h1>
-            <div class="table-container-user">
-                <table>
-                    <thead>
-                    <tr>
-                        <th class="a-link-no-margin">Id</th>
-                        <th class="a-link-no-margin">Марка</th>
-                        <th class="a-link-no-margin">Модель</th>
-                        <th class="a-link-no-margin">Номерной знак</th>
-                        <th class="a-link-no-margin">Год выпуска</th>
-                        <th class="a-link-no-margin">Цена</th>
-                        <th th:if="${#request.isUserInRole('MANAGER')}" class="a-link-no-margin"></th>
-                        <th th:if="${#request.isUserInRole('MANAGER')}" class="a-link-no-margin"></th>
-                        <th th:if="${#request.isUserInRole('MANAGER')}" class="a-link-no-margin"></th>
-                        <th th:if="${#request.isUserInRole('CLIENT')}" class="a-link-no-margin"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="find: ${result}">
-                        <img th:src="@{/car/image/{id}(id=${find.photo})}" width="250" height="250" alt="фото">
-                        <td><a th:text="${find.id}"></a></td>
-                        <td th:utext="${find.nameCarMake}" class="a-link-no-margin"></td>
-                        <td th:utext="${find.nameCarModel}" class="a-link-no-margin"></td>
-                        <td th:utext="${find.plateNumber}" class="a-link-no-margin"></td>
-                        <td th:utext="${find.productionYear}" class="a-link-no-margin"></td>
-                        <td th:utext="${find.pricePerDay}" class="a-link-no-margin"></td>
-                        <td th:if="${#request.isUserInRole('CLIENT')}" class="td-x-container"><a
-                                class="a-link-no-margin red-x"
-                                th:href="'/car/rent?id=' + ${find.id}"><img
-                                th:src="@{/img/edit.png}" class="crash-bin"></a></td>
-                        <td th:if="${#request.isUserInRole('MANAGER')}" class="td-x-container"><a
-                                class="a-link-no-margin red-x"
-                                th:href="'/car/edit?id=' + ${find.id}"><img
-                                th:src="@{/img/edit.png}" class="crash-bin"></a></td>
-                        <td th:if="${#request.isUserInRole('MANAGER')}" class="td-x-container"><a
-                                class="a-link-no-margin red-x"
-                                th:href="'/car/deleteCar?id=' + ${find.id}"><img
-                                th:src="@{/img/trash-bin.png}" class="crash-bin"></a></td>
-                        <td th:if="${#request.isUserInRole('MANAGER')}" class="td-x-container"><a
-                                class="a-link-no-margin red-x"
-                                th:href="'/car/add-photo?id=' + ${find.id}"><img
-                                th:src="@{/img/photo.png}" class="crash-bin"></a></td>
-                    </tr>
-                    </tbody>
-                </table>
+            <div class="cars">
+                <ul class="car-item">
+                    <li th:each="find: ${result}" class="car-block">
+                        <img th:src="@{/car/image/{id}(id=${find.photo})}" width="500" height="500" alt="фото">
+                        <h2>
+                            <div class="text-center"
+                                 th:utext="${find.nameCarMake} + ' ' + ${find.nameCarModel} + ', ' +${find.engineType} + ' ' +${find.engineCapacity} + ', ' + ${find.productionYear} + 'г'"></div>
+                        </h2>
+
+                        <div class="text-center"
+                             th:utext="'Расход:' + ${find.consumption} + ' на 100км'"></div>
+                        <div class="text-center"
+                             th:utext="'Класс авто:' + ${find.class_auto}"></div>
+                        <div class="text-center"
+                             th:utext="'Номер:' + ${find.plateNumber}"></div>
+                        <div class="text-center"
+                             th:utext="'Аренда в день:' + ${find.pricePerDay}"></div>
+                        <div class="text-center"
+                             th:utext="'Количество мест:' + ${find.seats}"></div>
+                        <div class="text-center"
+                             th:utext="'Коробка передач:' + ${find.transmission}"></div>
+                        <div class="text-center"
+                             th:utext="'Кондиционер:' + ${find.airConditioner}"></div>
+                        <div class="text-center"
+                             th:utext="'Дополнительно:' + ${find.body}"></div>
+                        <div class="item-menu">
+                            <div th:if="${#request.isUserInRole('CLIENT')}" class="td-x-container"><a
+                                    class="a-link-no-margin red-x"
+                                    th:href="'/car/rent?id=' + ${find.id}"><img
+                                    th:src="@{/img/edit.png}" class="crash-bin"></a></div>
+                            <div th:if="${#request.isUserInRole('MANAGER')}" class="td-x-container"><a
+                                    class="a-link-no-margin red-x"
+                                    th:href="'/car/edit?id=' + ${find.id}"><img
+                                    th:src="@{/img/edit.png}" class="crash-bin"></a></div>
+                            <div th:if="${#request.isUserInRole('MANAGER')}" class="td-x-container"><a
+                                    class="a-link-no-margin red-x"
+                                    th:href="'/car/add-photo?id=' + ${find.id}"><img
+                                    th:src="@{/img/photo.png}" class="crash-bin"></a></div>
+                            <div th:if="${#request.isUserInRole('MANAGER')}" class="td-x-container"><a
+                                    class="a-link-no-margin red-x"
+                                    th:href="'/car/deleteCar?id=' + ${find.id}"><img
+                                    th:src="@{/img/trash-bin.png}" class="crash-bin"></a></div>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </form>

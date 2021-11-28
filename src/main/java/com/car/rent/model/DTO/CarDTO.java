@@ -17,33 +17,33 @@ public class CarDTO {
 
     private long id;
 
-    private String plateNumber;
+    private String plateNumber;//
 
-    private Integer pricePerDay;
+    private Integer pricePerDay;//
 
-    private String transmission;
+    private String transmission;//
 
     private Boolean airConditioner;
 
     private String body;
 
-    private Integer seats;
+    private Integer seats;//
 
-    private Integer productionYear;
+    private Integer productionYear;//
 
-    private String class_auto;
+    private String class_auto;//
 
-    private Double engineCapacity;
+    private Double engineCapacity;//
 
-    private String engineType;
+    private String engineType;//
 
-    private Double consumption;
+    private Double consumption;//
 
-    private String nameCarModel;
+    private String nameCarModel;//
 
-    private String nameCarMake;
+    private String nameCarMake;//
 
-    private String photo;
+    private String photo;//
 
     public static CarDTO transferToDTO(Car car) {
         return CarDTO.builder()

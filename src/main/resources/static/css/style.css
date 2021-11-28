@@ -276,3 +276,26 @@ table {
 .padding-left-client-menu {
     padding-left: 357px;
 }
+
+.cars {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.car-item {
+    display: block;
+}
+
+.car-block {
+    background-color: #F1F1F1FF;
+    padding-bottom: 10%;
+    margin: 30px;
+    border-radius: 10%;
+}
+
+.item-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
