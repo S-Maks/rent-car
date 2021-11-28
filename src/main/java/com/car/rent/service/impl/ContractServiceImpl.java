@@ -76,10 +76,11 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     public void saveFile(Long id, HttpServletResponse response) {
-        File file = new File("test.pdf");
-        response.setContentType("application/octet-stream");
-        response.setHeader("Content-Disposition", "filename=\"test.pdf\"");
         try {
+            File file = File.createTempFile("basePrice", ".csv");
+            response.setContentType("application/octet-stream");
+            response.setHeader("Content-Disposition", "filename=\"test.pdf\"");
+
             FileUtils.copyFile(file, response.getOutputStream());
         } catch (IOException e) {
             e.printStackTrace();

@@ -42,8 +42,8 @@ public class ContractController {
     }
 
     @GetMapping("/save")
-    public String saveFile(@RequestParam(value = "id", required = false) Long id, Model model, HttpServletResponse response) {
+    public void saveFile(@RequestParam(value = "id", required = false) Long id, Model model, HttpServletResponse response) {
         contractService.saveFile(id, response);
-        return "redirect:/contract/show";
+        //return "redirect:/contract/show";
     }
 }
