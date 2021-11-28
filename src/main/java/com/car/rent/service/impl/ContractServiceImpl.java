@@ -8,6 +8,9 @@ import com.car.rent.repository.CarRepository;
 import com.car.rent.repository.ClientRepository;
 import com.car.rent.repository.ContractRepository;
 import com.car.rent.service.ContractService;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.PdfWriter;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.io.FileUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -77,14 +81,23 @@ public class ContractServiceImpl implements ContractService {
     @Override
     public void saveFile(Long id, HttpServletResponse response) {
         try {
-            File file = File.createTempFile("basePrice", ".csv");
-            response.setContentType("application/octet-stream");
-            response.setHeader("Content-Disposition", "filename=\"test.pdf\"");
+            File file = File.createTempFile("contract", ".pdf");
+            Document document = new Document(PageSize.A4, 50, 50, 50, 50);
+            BaseFont bf = BaseFont.createFont("C:\\Windows\\Fonts\\arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            Font font = new Font(bf, 14, Font.NORMAL);
+            PdfWriter.getInstance(document, new FileOutputStream(file));
 
+            document.open();
+            document.add(new Paragraph("Продам гараж", font));
+
+            document.close();
+
+            response.setContentType("application/octet-stream");
+            response.setHeader("Content-Disposition", "filename=\"" + file.getName() + "\"");
             FileUtils.copyFile(file, response.getOutputStream());
-        } catch (IOException e) {
+            file.delete();
+        } catch (IOException | DocumentException e) {
             e.printStackTrace();
         }
-
     }
 }
