@@ -299,3 +299,12 @@ table {
     justify-content: center;
     align-items: center;
 }
+
+.field {
+    color: black;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-size: 20px;
+}

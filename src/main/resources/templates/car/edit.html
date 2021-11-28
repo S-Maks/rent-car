@@ -28,60 +28,60 @@
   <div class="c-label box c-box-input" style="margin-top: 15%">
 
     <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
-      <input class="input100" th:value="${car.plateNumber}" type="text" placeholder="Номерной знак" id="plateNumber" name="plateNumber">
+      <input required class="input100" th:value="${car.plateNumber}" type="text" placeholder="Номерной знак" id="plateNumber" name="plateNumber">
     </div>
 
     <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
-      <input class="input100" th:value="${car.pricePerDay}" type="text" placeholder="Цена в день" id="pricePerDay" name="pricePerDay">
+      <input required class="input100" th:value="${car.pricePerDay}" type="text" placeholder="Цена в день" id="pricePerDay" name="pricePerDay">
     </div>
 
     <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
-      <input class="input100" th:value="${car.transmission}" type="text" placeholder="Коробка передач" id="transmission" name="transmission">
+      <input required class="input100" th:value="${car.transmission}" type="text" placeholder="Коробка передач" id="transmission" name="transmission">
     </div>
     <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
       <label>Кондиционер</label>
-      <input type="checkbox" th:value="${car.airConditioner}" checked="checked" id="airConditioner" name="airConditioner"/>
+      <input required type="checkbox" th:value="${car.airConditioner}" checked="checked" id="airConditioner" name="airConditioner"/>
     </div>
 
     <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
-      <input class="input100" th:value="${car.body}" type="text" placeholder="Описание" id="body" name="body">
+      <input required class="input100" th:value="${car.body}" type="text" placeholder="Описание" id="body" name="body">
     </div>
 
     <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
-      <input class="input100" th:value="${car.seats}" type="text" placeholder="Места" id="seats" name="seats">
+      <input required class="input100" th:value="${car.seats}" type="text" placeholder="Места" id="seats" name="seats">
     </div>
 
     <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
-      <input class="input100" th:value="${car.productionYear}" type="text" placeholder="Год выпуска" id="productionYear" name="productionYear">
+      <input required class="input100" th:value="${car.productionYear}" type="text" placeholder="Год выпуска" id="productionYear" name="productionYear">
     </div>
 
     <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
-      <input class="input100" th:value="${car.class_auto}" type="text" placeholder="Класс авто" id="class_auto" name="class_auto">
+      <input required class="input100" th:value="${car.class_auto}" type="text" placeholder="Класс авто" id="class_auto" name="class_auto">
     </div>
 
     <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
-      <input class="input100" th:value="${car.engineCapacity}" type="text" placeholder="Объем двигателя" id="engineCapacity" name="engineCapacity">
-    </div>
-
-
-    <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
-      <input class="input100" th:value="${car.engineType}" type="text" placeholder="Тип двигателя" id="engineType" name="engineType">
+      <input required class="input100" th:value="${car.engineCapacity}" type="text" placeholder="Объем двигателя" id="engineCapacity" name="engineCapacity">
     </div>
 
 
     <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
-      <input class="input100" th:value="${car.consumption}" type="text" placeholder="Потребление" id="consumption" name="consumption">
+      <input required class="input100" th:value="${car.engineType}" type="text" placeholder="Тип двигателя" id="engineType" name="engineType">
+    </div>
+
+
+    <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+      <input required class="input100" th:value="${car.consumption}" type="text" placeholder="Потребление" id="consumption" name="consumption">
     </div>
 
     <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
-      <input class="input100" th:value="${car.nameCarModel}" type="text" placeholder="Модель" id="nameCarModel" name="nameCarModel">
+      <input required class="input100" th:value="${car.nameCarModel}" type="text" placeholder="Модель" id="nameCarModel" name="nameCarModel">
     </div>
 
     <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
-      <input class="input100" th:value="${car.nameCarMake}" type="text" placeholder="Марка" id="nameCarMake" name="nameCarMake">
+      <input required class="input100" th:value="${car.nameCarMake}" type="text" placeholder="Марка" id="nameCarMake" name="nameCarMake">
     </div>
 
-    <input type="hidden" th:value="${car.id}" th:field="*{id}"/>
+    <input required type="hidden" th:value="${car.id}" th:field="*{id}"/>
 
     <div class="container-login100-form-btn p-t-10">
       <button class="login100-form-btn">

@@ -13,36 +13,57 @@
     <div class="wrap-login100 p-b-30">
         <form class="login100-form validate-form" th:action="@{/registration}" method="post">
 
-            <div class="wrap-input100 validate-input m-b-10" data-validate="Username is required">
-                <input class="input100" type="text" placeholder="Имя пользователя" id="username" name="username">
+            <div class="wrap-input100 validate-input m-b-20" data-validate="Username is required">
+                <label class="field" for="username">Имя пользователя</label>
+                <input pattern="[а-яА-Яa-zA-Z]{3-10}" required class="input100" type="text"
+                       placeholder="Не менее 3 символов" id="username"
+                       name="username">
             </div>
 
-            <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
-                <input class="input100" type="password" placeholder="Пароль" id="password" name="password">
+            <div class="wrap-input100 validate-input m-b-20" data-validate="Password is required">
+                <label class="field" for="password">Пароль</label>
+                <input pattern="[0-9a-zA-Z]{8}" required class="input100" type="password"
+                       placeholder="Не менее 8 символов"
+                       id="password" name="password">
             </div>
 
             <div class="wrap-input100 validate-input m-b-10" data-validate="First Name is required">
-                <input required class="input100" type="text" placeholder="Имя" id="firstName" name="firstName">
+                <label class="field" for="firstName">Имя</label>
+                <input pattern="[а-яА-Я]{2-10}" required class="input100" type="text"
+                       id="firstName"
+                       name="firstName">
             </div>
 
             <div class="wrap-input100 validate-input m-b-10" data-validate="Last Name is required">
-                <input required class="input100" type="text" placeholder="Фамилия" id="lastName" name="lastName">
+                <label class="field" for="lastName">Фамилия</label>
+                <input pattern="[а-яА-Я]{2-10}" required class="input100" type="text" placeholder="Фамилия"
+                       id="lastName" name="lastName">
             </div>
 
             <div class="wrap-input100 validate-input m-b-10" data-validate="Email is required">
-                <input required class="input100" type="text" placeholder="Документ" id="document" name="document">
+                <label class="field" for="document">Документ</label>
+                <input pattern="[а-яА-Я]{5}" required class="input100" type="text" placeholder=""
+                       id="document" name="document">
             </div>
 
             <div class="wrap-input100 validate-input m-b-10" data-validate="Email is required">
-                <input required class="input100" pattern="[0-9]{7}" type="text" placeholder="Номер документа" id="documentNumber" name="documentNumber">
+                <label class="field" for="documentNumber">Номер документа</label>
+                <input pattern="[0-9]{7}" required class="input100" type="text"
+                       placeholder=""
+                       id="documentNumber" name="documentNumber">
             </div>
 
             <div class="wrap-input100 validate-input m-b-10" data-validate="Email is required">
-                <input class="input100" pattern="+[0-9]{12}" type="tel" placeholder="Телефон" id="phone" name="phone">
+                <label class="field" for="phone">Телефон</label>
+                <input class="input100" pattern="[+]{1}[0-9]{12}" type="tel" placeholder=""
+                       id="phone" name="phone">
             </div>
 
             <div class="wrap-input100 validate-input m-b-10" data-validate="Email is required">
-                <input class="input100" pattern="[0-9]{2}" type="tel" placeholder="Опыт(полных лет)" id="experience" name="experience">
+                <label class="field" for="experience">Опыт</label>
+                <input class="input100" pattern="[0-9]{1-2}" type="tel"
+                       placeholder="Полных лет" id="experience"
+                       name="experience">
             </div>
 
             <div class="container-login100-form-btn p-t-10">

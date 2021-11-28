@@ -14,11 +14,11 @@
         <form class="login100-form validate-form" th:action="@{/manager/registration}" method="post">
 
             <div class="wrap-input100 validate-input m-b-10" data-validate="Username is required">
-                <input class="input100" type="text" placeholder="Имя пользователя" id="username" name="username">
+                <input pattern="[а-яА-Яa-zA-Z]{3-10}" class="input100" type="text" placeholder="Имя пользователя" id="username" name="username">
             </div>
 
             <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
-                <input class="input100" type="password" placeholder="Пароль" id="password" name="password">
+                <input pattern="[0-9a-zA-Z]{8}" required class="input100" type="password" placeholder="Пароль" id="password" name="password">
             </div>
 
             <div class="container-login100-form-btn p-t-10">
