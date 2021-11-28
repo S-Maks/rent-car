@@ -42,6 +42,8 @@ public class Car {
 
     private Double consumption;
 
+    private Double experience;
+
     @ManyToOne
     @JoinColumn(name = "model_id")
     private CarModel carModel;

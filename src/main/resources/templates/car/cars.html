@@ -110,6 +110,9 @@
                              th:utext="'Кондиционер:' + ${find.airConditioner}"></div>
                         <div class="text-center"
                              th:utext="'Дополнительно:' + ${find.body}"></div>
+                        <div class="text-center"
+                             th:utext="'Требуемый опыт вождения:' + ${find.experience} + 'лет'"></div>
+
                         <div class="item-menu">
                             <div th:if="${#request.isUserInRole('CLIENT')}" class="td-x-container"><a
                                     class="a-link-no-margin red-x"

@@ -45,6 +45,8 @@ public class CarDTO {
 
     private String photo;//
 
+    private Double experience;//
+
     public static CarDTO transferToDTO(Car car) {
         return CarDTO.builder()
                 .id(car.getId())
@@ -61,6 +63,7 @@ public class CarDTO {
                 .consumption(car.getConsumption())
                 .nameCarModel(car.getCarModel().getName())
                 .nameCarMake(car.getCarModel().getMakeId().getName())
+                .experience(car.getExperience())
                 .build();
     }
 }

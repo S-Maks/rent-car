@@ -80,6 +80,9 @@
     <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
       <input required class="input100" th:value="${car.nameCarMake}" type="text" placeholder="Марка" id="nameCarMake" name="nameCarMake">
     </div>
+    <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+      <input required class="input100" th:value="${car.experience}" type="text" placeholder="Минимальный опыт" id="experience" name="experience">
+    </div>
 
     <input required type="hidden" th:value="${car.id}" th:field="*{id}"/>
 

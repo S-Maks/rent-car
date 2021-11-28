@@ -81,6 +81,7 @@ public class CarServiceImpl implements CarService {
                 .engineType(dto.getEngineType())
                 .consumption(dto.getConsumption())
                 .carModel(model)
+                .experience(dto.getExperience())
                 .build();
         carRepository.save(car);
     }

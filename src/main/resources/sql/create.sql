@@ -18,6 +18,7 @@ CREATE TABLE car
     model_id        INT         NOT NULL,
     plate_number    VARCHAR(10) NOT NULL,
     price_per_day   INT         NOT NULL,
+    experience      FLOAT       NOT NULL,
     transmission    VARCHAR(45),
     air_conditioner BOOLEAN,
     body            VARCHAR(45),
@@ -58,7 +59,7 @@ CREATE TABLE contract
     car_id     INT  NOT NULL,
     start_date DATE NOT NULL,
     end_date   DATE NOT NULL,
-    CONSTRAINT fk_client_contract FOREIGN KEY (client_id) REFERENCES client (id) ON DELETE CASCADE ON UPDATE CASCADE ,
+    CONSTRAINT fk_client_contract FOREIGN KEY (client_id) REFERENCES client (id) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_car_contract FOREIGN KEY (car_id) REFERENCES car (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
