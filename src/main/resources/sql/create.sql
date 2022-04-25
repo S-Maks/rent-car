@@ -137,7 +137,8 @@ VALUES (1, '0816BH-7', 100, 'автомат', true, 'Подогрев сиден
 
 INSERT INTO role(name)
 VALUES ('ROLE_MANAGER'),
-       ('ROLE_CLIENT');
+       ('ROLE_CLIENT'),
+       ('ROLE_ACCOUNTANT');
 
 INSERT INTO client(username, password, first_name, last_name, document, document_number, phone, experience, role_id)
 VALUES ('client', '$2a$10$TmkPCXasKMmpD4Qb/px5A.SxpshdOmxvgimD5dLsswogjpYJz0xn2', 'client', 'client', 'prava',
@@ -145,3 +146,6 @@ VALUES ('client', '$2a$10$TmkPCXasKMmpD4Qb/px5A.SxpshdOmxvgimD5dLsswogjpYJz0xn2'
 
 INSERT INTO manager(username, password, role_id)
 VALUES ('manager', '$2a$10$uRPtRqlDgfIp9ssMUrgo0es2Bz2EB98qvkYxoRLfow.zgEM28x24O', 1);
+
+INSERT INTO manager(username, password, role_id)
+VALUES ('accountant', '$2a$10$H56azaJ3J6Dc9Ft0emJGSeX2gK010t01Y54TLXzPi38b3P8GIHIW.', 3);
