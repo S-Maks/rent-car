@@ -6,7 +6,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 
 @Data
@@ -24,6 +34,10 @@ public class Contract {
     private LocalDateTime startDate;
 
     private LocalDateTime endDate;
+
+    private Integer days;
+
+    private Double amounts;
 
     @Enumerated(EnumType.STRING)
     private Status status;

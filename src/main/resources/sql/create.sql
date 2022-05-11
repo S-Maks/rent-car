@@ -57,8 +57,10 @@ CREATE TABLE contract
     id         BIGSERIAL PRIMARY KEY,
     client_id  INT         NOT NULL,
     car_id     INT         NOT NULL,
-    start_date DATE        NOT NULL,
-    end_date   DATE        NOT NULL,
+    start_date TIMESTAMP   NOT NULL,
+    end_date   TIMESTAMP   NOT NULL,
+    days       INT         NOT NULL,
+    amounts    DECIMAL     NOT NULL,
     status     VARCHAR(45) NOT NULL,
     CONSTRAINT fk_client_contract FOREIGN KEY (client_id) REFERENCES client (id) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_car_contract FOREIGN KEY (car_id) REFERENCES car (id) ON DELETE CASCADE ON UPDATE CASCADE
@@ -145,3 +147,9 @@ VALUES ('client', '$2a$10$TmkPCXasKMmpD4Qb/px5A.SxpshdOmxvgimD5dLsswogjpYJz0xn2'
 
 INSERT INTO manager(username, password, role_id)
 VALUES ('manager', '$2a$10$uRPtRqlDgfIp9ssMUrgo0es2Bz2EB98qvkYxoRLfow.zgEM28x24O', 1);
+
+
+INSERT INTO public.contract (client_id, car_id, start_date, end_date, status, days, amounts)
+VALUES (1, 1, '2022-04-11', '2022-04-11', 'APPROVED', 0, 100);
+INSERT INTO public.contract (client_id, car_id, start_date, end_date, status, days, amounts)
+VALUES (1, 1, '2022-05-11', '2022-05-11', 'APPROVED', 0, 100);

@@ -39,12 +39,18 @@ public class ContractServiceImpl implements ContractService {
     public void save(String start, String end, String carId) {
         Car car = carRepository.findById(Long.parseLong(carId)).get();
         Client client = clientRepository.findFirstByUsername(SecurityContextHolder.getContext().getAuthentication().getName()).get();
+
+        Integer countDays = LocalDateTime.parse(end).getDayOfMonth() - LocalDateTime.parse(start).getDayOfMonth();
+
+        Double countAmounts = (double) (countDays == 0 ? car.getPricePerDay() : car.getPricePerDay() * countDays);
         Contract contract = Contract.builder()
                 .startDate(LocalDateTime.parse(start))
                 .endDate(LocalDateTime.parse(end))
                 .carId(car)
                 .clientId(client)
                 .status(Status.REVIEW)
+                .days(countDays)
+                .amounts(countAmounts)
                 .build();
         contractRepository.save(contract);
     }

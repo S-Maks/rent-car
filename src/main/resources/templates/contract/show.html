@@ -58,6 +58,8 @@
                         <th class="a-link-no-margin">Id</th>
                         <th class="a-link-no-margin">Время начала</th>
                         <th class="a-link-no-margin">Время окончания</th>
+                        <th class="a-link-no-margin">Дней</th>
+                        <th class="a-link-no-margin">Стоимость</th>
                         <th class="a-link-no-margin">Статус</th>
                         <th class="a-link-no-margin">Клиент</th>
                         <th class="a-link-no-margin">Автомобиль</th>
@@ -70,8 +72,10 @@
                     <tbody>
                     <tr th:each="findUser: ${result}">
                         <td><a th:text="${findUser.id}"></a></td>
-                        <td th:utext="${findUser.startDate}" class="a-link-no-margin"></td>
-                        <td th:utext="${findUser.endDate}" class="a-link-no-margin"></td>
+                        <td th:utext="${#temporals.format(findUser.startDate, 'dd.MM.yyyy HH:mm')}" class="a-link-no-margin"></td>
+                        <td th:utext="${#temporals.format(findUser.endDate, 'dd.MM.yyyy HH:mm')}" class="a-link-no-margin"></td>
+                        <td th:utext="${findUser.days}" class="a-link-no-margin"></td>
+                        <td th:utext="${findUser.amounts}" class="a-link-no-margin"></td>
                         <td th:utext="${findUser.status}" class="a-link-no-margin"></td>
                         <td th:utext="${findUser.clientId.username}" class="a-link-no-margin"></td>
                         <td th:utext="${findUser.carId.carModel.makeId.name} + ' ' +
