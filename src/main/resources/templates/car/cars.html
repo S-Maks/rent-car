@@ -22,7 +22,7 @@
         </div>
     </div>
 </header>
-<ul th:if="${#request.isUserInRole('MANAGER') || #request.isUserInRole('ACCOUNTANT')}" class="p-l-370">
+<ul th:if="${#request.isUserInRole('MANAGER')}" class="p-l-370">
     <li class="p-l-30">
         <a th:href="@{/car/car-make}">
             <div class="centerVertical centerHorizon buttonMenu">Марки</div>
@@ -118,15 +118,15 @@
                                     class="a-link-no-margin red-x"
                                     th:href="'/car/rent?id=' + ${find.id}"><img
                                     th:src="@{/img/rent.png}" class="crash-bin"></a></div>
-                            <div th:if="${#request.isUserInRole('MANAGER') || #request.isUserInRole('ACCOUNTANT')}" class="td-x-container"><a
+                            <div th:if="${#request.isUserInRole('MANAGER')}" class="td-x-container"><a
                                     class="a-link-no-margin red-x"
                                     th:href="'/car/edit?id=' + ${find.id}"><img
                                     th:src="@{/img/edit.png}" class="crash-bin"></a></div>
-                            <div th:if="${#request.isUserInRole('MANAGER') || #request.isUserInRole('ACCOUNTANT')}" class="td-x-container"><a
+                            <div th:if="${#request.isUserInRole('MANAGER')}" class="td-x-container"><a
                                     class="a-link-no-margin red-x"
                                     th:href="'/car/add-photo?id=' + ${find.id}"><img
                                     th:src="@{/img/photo.png}" class="crash-bin"></a></div>
-                            <div th:if="${#request.isUserInRole('MANAGER') || #request.isUserInRole('ACCOUNTANT')}" class="td-x-container"><a
+                            <div th:if="${#request.isUserInRole('MANAGER')}" class="td-x-container"><a
                                     class="a-link-no-margin red-x"
                                     th:href="'/car/deleteCar?id=' + ${find.id}"><img
                                     th:src="@{/img/trash-bin.png}" class="crash-bin"></a></div>
