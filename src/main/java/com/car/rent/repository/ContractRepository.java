@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ContractRepository extends JpaRepository<Contract, Long> {
+    List<Contract> findAllByStatusAndClientId(Status status, Client client);
+
     List<Contract> findAllByStatus(Status status);
 
     List<Contract> findAllByClientId(Client client);

@@ -8,7 +8,11 @@ import com.car.rent.repository.CarRepository;
 import com.car.rent.repository.ClientRepository;
 import com.car.rent.repository.ContractRepository;
 import com.car.rent.service.ContractService;
-import com.itextpdf.text.*;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +26,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -51,10 +56,19 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     public List<Contract> findByStatus(String status) {
-        if (status.equals("")) {
-            return contractRepository.findAllByStatus(Status.REVIEW);
+        Optional<Client> client = clientRepository.findFirstByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        if (client.isPresent()) {
+            if (status.equals("")) {
+                return contractRepository.findAllByStatusAndClientId(Status.REVIEW, client.get());
+            } else {
+                return contractRepository.findAllByStatusAndClientId(Status.valueOf(status), client.get());
+            }
         } else {
-            return contractRepository.findAllByStatus(Status.valueOf(status));
+            if (status.equals("")) {
+                return contractRepository.findAllByStatus(Status.REVIEW);
+            } else {
+                return contractRepository.findAllByStatus(Status.valueOf(status));
+            }
         }
     }
 
